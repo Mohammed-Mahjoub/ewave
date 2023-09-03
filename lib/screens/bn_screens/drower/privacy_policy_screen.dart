@@ -1,3 +1,4 @@
+import 'package:ewave/api/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,16 +26,27 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(
-          'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test ',
-          style: GoogleFonts.poppins(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
+      body: FutureBuilder(
+        future: SettingsController().getSettings(),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return const Center(child:  CircularProgressIndicator(color: Colors.blue,),);
+          }else if(snapshot.hasData){
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                 snapshot.data!
+                 , style: GoogleFonts.poppins(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            );
+          }else{
+            return Container();
+          }
+
+      },),
     );
   }
 }

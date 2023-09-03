@@ -1,13 +1,18 @@
 import 'package:ewave/screens/auth/login_screen.dart';
+import 'package:ewave/util/helpers.dart';
 import 'package:ewave/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../api/controllers/auth_controller.dart';
 import '../../widgets/app_text_field.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({Key? key}) : super(key: key);
+  String? email;
+
+
+  ForgetPasswordScreen(this.email, {super.key});
 
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
@@ -15,21 +20,18 @@ class ForgetPasswordScreen extends StatefulWidget {
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   late TextEditingController _passwordEditingController;
-  late TextEditingController _confirmPasswordEditingController;
   bool _obscure = true;
-  bool _obscure2 = true;
 
   @override
   void initState() {
     super.initState();
     _passwordEditingController = TextEditingController();
-    _confirmPasswordEditingController = TextEditingController();
+
   }
 
   @override
   void dispose() {
     _passwordEditingController.dispose();
-    _confirmPasswordEditingController.dispose();
     super.dispose();
   }
 
@@ -75,28 +77,35 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             textEditingController: _passwordEditingController,
           ),
           SizedBox(height: 20.h),
-          AppTextField(
-            hintText: 'Confirm Your Password',
-            keyboardType: TextInputType.text,
-            obscure: _obscure2,
-            suffixIcon: IconButton(
-              onPressed: () {
-                setState(() => _obscure2 = !_obscure2);
-              },
-              icon: Icon(
-                _obscure2 ? Icons.visibility : Icons.visibility_off_outlined,
-              ),
-            ),
-            textEditingController: _confirmPasswordEditingController,
-          ),
           SizedBox(height: 34.h),
           AppButton(
             text: 'Reset Password',
-            onPress: () => Navigator.pushNamedAndRemoveUntil(
-                context, '/login_screen', (route) => false),
+            onPress: () async {
+              if(isFullData()){
+                bool isSendCode = await AuthController().resetPassword(email: widget.email!,newPassword:_passwordEditingController.text );
+
+                if (context.mounted) {
+                  if(isSendCode){
+                    Navigator.pushNamedAndRemoveUntil(context, '/login_screen', (route) => true);
+                  }else{
+                    context.showSnackBar(message: 'wrong', error: true);
+                  }
+                }
+              }else{
+                context.showSnackBar(message: 'Enter the required data', error: true);
+              }
+
+            },
           ),
         ],
       ),
     );
+  }
+  bool isFullData() {
+    if (_passwordEditingController.text.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

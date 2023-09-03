@@ -1,8 +1,10 @@
+import 'package:ewave/util/helpers.dart';
 import 'package:ewave/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../api/controllers/auth_controller.dart';
 import '../../widgets/app_text_field.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -64,8 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
       body: ListView(
-
-        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 50.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 50.h),
         children: [
           Text(
             'create your account , it takes less than a minute',
@@ -109,9 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 setState(() => _obscure = !_obscure);
               },
               icon: Icon(
-                _obscure
-                    ? Icons.visibility
-                    : Icons.visibility_off_outlined,
+                _obscure ? Icons.visibility : Icons.visibility_off_outlined,
               ),
             ),
           ),
@@ -120,22 +119,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
             hintText: 'Confirm Your Password',
             keyboardType: TextInputType.text,
             obscure: _obscure2,
-            textEditingController:
-            _confirmPasswordEditingController,
+            textEditingController: _confirmPasswordEditingController,
             suffixIcon: IconButton(
               onPressed: () {
                 setState(() => _obscure2 = !_obscure2);
               },
               icon: Icon(
-                _obscure2
-                    ? Icons.visibility
-                    : Icons.visibility_off_outlined,
+                _obscure2 ? Icons.visibility : Icons.visibility_off_outlined,
               ),
             ),
           ),
-
           SizedBox(height: 50.h),
-          AppButton(text: 'Sign up', onPress: () {}),
+          AppButton(
+            text: 'Sign up',
+            onPress: () async {
+              if(isFullData()){
+                bool register = await AuthController().register(
+                  email: _emailEditingController.text,
+                  name: '${_fnameEditingController.text} ${_lnameEditingController.text}',
+                  mobileNumber: _mobileEditingController.text,
+                  password: _passwordEditingController.text,
+                  passwordConfirm: _confirmPasswordEditingController.text,
+                );
+                if (context.mounted) {
+                  if (register) {
+                    Navigator.pushReplacementNamed(context, '/login_screen');
+                  } else {
+                    context.showSnackBar(
+                        message: 'The password or email is wrong', error: true);
+                  }
+                }
+              }else{
+                context.showSnackBar(
+                    message: 'Enter the required data', error: true);
+              }
+
+            },
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -159,5 +179,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ],
       ),
     );
+  }
+
+  bool isFullData(){
+    if(
+    _emailEditingController.text.isNotEmpty &&
+    _mobileEditingController.text.isNotEmpty &&
+    _fnameEditingController.text.isNotEmpty &&
+    _lnameEditingController.text.isNotEmpty &&
+    _passwordEditingController.text.isNotEmpty &&
+    _confirmPasswordEditingController.text.isNotEmpty
+    ){
+      return true;
+    }else{
+      return false;
+    }
+
   }
 }

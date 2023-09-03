@@ -1,12 +1,19 @@
+import 'package:ewave/util/helpers.dart';
 import 'package:ewave/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../api/controllers/auth_controller.dart';
 import '../../widgets/app_text_field.dart';
+import 'forget_password_screen.dart';
 
 class EnterCodeScreen extends StatefulWidget {
-  const EnterCodeScreen({Key? key}) : super(key: key);
+
+   String? email;
+
+
+   EnterCodeScreen(this.email);
 
   @override
   State<EnterCodeScreen> createState() => _EnterCodeScreenState();
@@ -62,11 +69,35 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
           SizedBox(height: 34.h),
           AppButton(
             text: 'Next',
-            onPress: () =>
-                Navigator.pushNamed(context, '/forget_password_screen'),
+            onPress: () async {
+              if(isFullData()){
+                bool isSendCode = await AuthController().verifyCode(email: widget.email!,code:_codeEditingController.text);
+
+                if (context.mounted) {
+                  if(isSendCode){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return ForgetPasswordScreen(widget.email!);
+                    },));
+                  }else{
+                    context.showSnackBar(message: 'Code is wrong', error: true);
+                  }
+                }
+              }else{
+                context.showSnackBar(message: 'Enter the required data', error: true);
+              }
+
+
+            },
           ),
         ],
       ),
     );
+  }
+  bool isFullData() {
+    if (_codeEditingController.text.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

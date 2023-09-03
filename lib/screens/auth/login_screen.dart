@@ -1,3 +1,7 @@
+import 'package:ewave/api/controllers/auth_controller.dart';
+import 'package:ewave/models/login.dart';
+import 'package:ewave/shared_preferences/shared_preferences.dart';
+import 'package:ewave/util/helpers.dart';
 import 'package:ewave/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,7 +85,26 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(height: 34.h),
           AppButton(
             text: 'Log in',
-            onPress: () => Navigator.pushReplacementNamed(context, '/bn_screen'),
+            onPress: () async {
+              if (isFullData()) {
+                LogIn? logInUser = await AuthController().logIn(
+                    email: _emailEditingController.text,
+                    password: _passwordEditingController.text);
+                if (context.mounted) {
+                  if (logInUser != null) {
+                    AppSettingsPreferences.saveUser(
+                        user: logInUser.data!.user!);
+                    AppSettingsPreferences.saveToken(token: logInUser.token!);
+                    Navigator.pushReplacementNamed(context, '/bn_screen');
+                  } else {
+                    context.showSnackBar(
+                        message: 'The password or email is wrong', error: true);
+                  }
+                }
+              }else{
+                context.showSnackBar(message: 'Enter the required data', error: true);
+              }
+            },
           ),
           SizedBox(height: 10.h),
           Center(
@@ -119,5 +142,14 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  bool isFullData() {
+    if (_emailEditingController.text.isNotEmpty &&
+        _passwordEditingController.text.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

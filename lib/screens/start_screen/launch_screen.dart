@@ -1,3 +1,4 @@
+import 'package:ewave/shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +14,12 @@ class _LaunchScreenState extends State<LaunchScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/login_screen');
+      if(AppSettingsPreferences.getString(key: PrefKeys.token.name) != ''){
+        Navigator.pushReplacementNamed(context, '/bn_screen');
+      }else{
+        Navigator.pushReplacementNamed(context, '/login_screen');
+      }
+
     });
   }
 

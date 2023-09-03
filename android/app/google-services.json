@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "611959916504",
+    "project_id": "ewave-ecb77",
+    "storage_bucket": "ewave-ecb77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611959916504:android:1a5695a67129e00245d4ad",
+        "android_client_info": {
+          "package_name": "com.ewave.ewave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611959916504-vaum72aigoo91gta04bijvahgrmk055d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdk3cnLV7cynNB1bnCGAv5JZrdPk0g1lg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611959916504-vaum72aigoo91gta04bijvahgrmk055d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,10 @@
 import 'package:ewave/screens/bn_screens/blog/blog_screen.dart';
+import 'package:ewave/screens/bn_screens/paid_recommendation/markets_paid_screen.dart';
 import 'package:ewave/screens/bn_screens/paid_recommendation/paid_recommendation_screen.dart';
+import 'package:ewave/screens/bn_screens/recommendation/markets_unpaid_screen.dart';
 import 'package:ewave/screens/bn_screens/recommendation/recommendation_screen.dart';
 import 'package:ewave/screens/bn_screens/video/video_screen.dart';
+import 'package:ewave/shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,9 +26,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     final List<BnScreen> screens = <BnScreen>[
       const BnScreen(title: 'Blog', widget: BlogScreen()),
       const BnScreen(title: 'Video', widget: VideoScreen()),
-      const BnScreen(title: 'Recommendations', widget: RecommendationScreen()),
+      const BnScreen(title: 'Recommendations', widget: MarketsScreen()),
       const BnScreen(
-          title: 'Paid recommendations', widget: PaidRecommendationScreen()),
+          title: 'Paid recommendations', widget: MarketsPaidScreen()),
     ];
     return Scaffold(
       backgroundColor: Colors.white,
@@ -147,7 +150,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Mohammed Mahjoub',
+                            AppSettingsPreferences().user().name!,
                             style: GoogleFonts.poppins(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
@@ -155,9 +158,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                             ),
                           ),
                           Text(
-                            '+970597774041',
+                            AppSettingsPreferences().user().role!,
                             style: GoogleFonts.poppins(
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -217,7 +220,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 padding: const EdgeInsets.all(16),
                 child: InkWell(
                   onTap: () async {
-                   Navigator.pushReplacementNamed(context, '/login_screen');
+                    AppSettingsPreferences.putString(key: PrefKeys.token.name, value: '');
+                   Navigator.pushNamedAndRemoveUntil(context, '/login_screen',(route) => true,);
                   },
                   child: Row(
                     children: [
