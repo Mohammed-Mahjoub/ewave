@@ -6,17 +6,17 @@ import 'package:intl/intl.dart';
 import '../../../models/recommendations.dart';
 
 class SingleRecommendationScreen extends StatefulWidget {
-
-
   Recommendations? recommendations;
 
   @override
-  State<SingleRecommendationScreen> createState() => _SingleRecommendationScreenState();
+  State<SingleRecommendationScreen> createState() =>
+      _SingleRecommendationScreenState();
 
   SingleRecommendationScreen(this.recommendations, {super.key});
 }
 
-class _SingleRecommendationScreenState extends State<SingleRecommendationScreen> {
+class _SingleRecommendationScreenState
+    extends State<SingleRecommendationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +84,11 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                     ),
                     const Spacer(),
                     Text(
-                      widget.recommendations!.status! == 0 ? 'pending' :  widget.recommendations!.status! == 1 ? 'active': 'expired',
+                      widget.recommendations!.status! == 0
+                          ? 'pending'
+                          : widget.recommendations!.status! == 1
+                              ? 'active'
+                              : 'expired',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -108,7 +112,8 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                     ),
                     const Spacer(),
                     Text(
-                      DateFormat.yMd().add_jm().format(DateTime.parse(widget.recommendations!.openingTime!)),
+                      DateFormat.yMd().add_jm().format(
+                          DateTime.parse(widget.recommendations!.openingTime!)),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -132,7 +137,9 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                     ),
                     const Spacer(),
                     Text(
-                      widget.recommendations!.tradeStyle! == 0 ? 'Swing Trade' : 'Interday',
+                      widget.recommendations!.tradeStyle! == 0
+                          ? 'Swing Trade'
+                          : 'Interday',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -156,7 +163,7 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                     ),
                     const Spacer(),
                     Text(
-                      widget.recommendations!.riskPerTrade!.toString()+'%',
+                      widget.recommendations!.riskPerTrade!.toString() + '%',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -165,7 +172,7 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                     ),
                   ],
                 ),
-                SizedBox(height: 10.h),
+                const Divider(thickness: 2,color: Colors.black,),
                 Row(
                   children: [
                     const Icon(Icons.multiline_chart),
@@ -276,7 +283,15 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                     ),
                     const Spacer(),
                     Text(
-                      widget.recommendations!.tradeResult! == 0 ? 'waiting' :  widget.recommendations!.tradeResult! == 1 ? 'Break even':widget.recommendations!.tradeResult! == 2 ? 'Target 1' :widget.recommendations!.tradeResult! == 3 ? 'Target 2': 'Stop loss',
+                      widget.recommendations!.tradeResult! == 0
+                          ? 'waiting'
+                          : widget.recommendations!.tradeResult! == 1
+                              ? 'Break even'
+                              : widget.recommendations!.tradeResult! == 2
+                                  ? 'Target 1'
+                                  : widget.recommendations!.tradeResult! == 3
+                                      ? 'Target 2'
+                                      : 'Stop loss',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -285,7 +300,7 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                     ),
                   ],
                 ),
-                SizedBox(height: 10.h),
+                const Divider(thickness: 2,color: Colors.black,),
                 Row(
                   children: [
                     const Icon(Icons.multiline_chart),
@@ -348,7 +363,8 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                     ),
                     const Spacer(),
                     Text(
-                      DateFormat.yMd().add_jm().format(DateTime.parse(widget.recommendations!.lastUpdate!)),
+                      DateFormat.yMd().add_jm().format(
+                          DateTime.parse(widget.recommendations!.lastUpdate!)),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -359,24 +375,29 @@ class _SingleRecommendationScreenState extends State<SingleRecommendationScreen>
                 ),
                 SizedBox(height: 10.h),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Icon(Icons.multiline_chart),
                     SizedBox(width: 5.w),
-                    Text(
-                      'Comment:',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 16.sp,
-                        color: Colors.black,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Comment:',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                    const Spacer(),
-                    Text(
-                      widget.recommendations!.comment!,
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
-                        color: Colors.black,
+                    Expanded(
+                      child: Text(
+                        widget.recommendations!.comment!,
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14.sp,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ],

@@ -4,6 +4,7 @@ import 'package:ewave/screens/auth/forget_password_screen.dart';
 import 'package:ewave/screens/auth/login_screen.dart';
 import 'package:ewave/screens/auth/register_screen.dart';
 import 'package:ewave/screens/bn_screens/bottom_navigation_screen.dart';
+import 'package:ewave/screens/bn_screens/drower/pay_screen.dart';
 import 'package:ewave/screens/bn_screens/drower/privacy_policy_screen.dart';
 import 'package:ewave/screens/start_screen/launch_screen.dart';
 import 'package:ewave/shared_preferences/shared_preferences.dart';
@@ -58,6 +59,7 @@ class _MyAppState extends State<MyApp> {
               '/register_screen': (context) => const RegisterScreen(),
               '/login_screen': (context) => const LoginScreen(),
               '/enter_email_screen': (context) => const EnterEmailScreen(),
+              '/pay_screen': (context) => const PayScreen(),
               // '/enter_code_screen': (context) => const EnterCodeScreen(),
               // '/forget_password_screen': (context) => const ForgetPasswordScreen(),
               '/bn_screen': (context) => const BottomNavigationScreen(),

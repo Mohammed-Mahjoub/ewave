@@ -1,21 +1,20 @@
-import 'package:ewave/api/controllers/auth_controller.dart';
-import 'package:ewave/screens/auth/enter_code_screen.dart';
+import 'package:ewave/api/controllers/pay_controller.dart';
 import 'package:ewave/util/helpers.dart';
-import 'package:ewave/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../widgets/app_text_field.dart';
+import '../../../widgets/app_button.dart';
+import '../../../widgets/app_text_field.dart';
 
-class EnterEmailScreen extends StatefulWidget {
-  const EnterEmailScreen({Key? key}) : super(key: key);
+class PayScreen extends StatefulWidget {
+  const PayScreen({super.key});
 
   @override
-  State<EnterEmailScreen> createState() => _EnterEmailScreenState();
+  State<PayScreen> createState() => _PayScreenState();
 }
 
-class _EnterEmailScreenState extends State<EnterEmailScreen> {
+class _PayScreenState extends State<PayScreen> {
   late TextEditingController _emailEditingController;
 
   @override
@@ -38,7 +37,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
         backgroundColor: const Color(0XFF407bda),
         elevation: 0,
         title: Text(
-          'Enter Email',
+          'Pay Screen',
           style: GoogleFonts.poppins(
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,
@@ -49,8 +48,12 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 50.h),
         children: [
+          Image.asset(
+            'assets/paypal.png',
+            height: 200.h,
+          ),
           Text(
-            'Enter Your Email To Reset Password',
+            'Enter Your Email To Pay 120\$ For The Paid Subscription',
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
@@ -64,31 +67,32 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
           ),
           SizedBox(height: 50.h),
           AppButton(
-            text: 'Next',
+            text: 'Pay',
             onPress: () async {
-              if(isFullData()){
-                bool isSendCode = await AuthController().forgotPassword(email: _emailEditingController.text);
-
+              if (isFullData()) {
+                String? response = await PayController()
+                    .pay(email: _emailEditingController.text);
                 if (context.mounted) {
-                  if(isSendCode){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return EnterCodeScreen(_emailEditingController.text);
-                    },));
-                  }else{
-                    context.showSnackBar(message: 'email is wrong', error: true);
+                  if (response != null) {
+                    context.showSnackBar(
+                        message: 'Done Successfully', error: false);
+                    Navigator.pop(context);
+                  } else {
+                    context.showSnackBar(
+                        message: 'email is wrong', error: true);
                   }
                 }
-              }else{
-                context.showSnackBar(message: 'Enter the required data', error: true);
+              } else {
+                context.showSnackBar(
+                    message: 'Enter the required data', error: true);
               }
-
-
             },
           ),
         ],
       ),
     );
   }
+
   bool isFullData() {
     if (_emailEditingController.text.isNotEmpty) {
       return true;

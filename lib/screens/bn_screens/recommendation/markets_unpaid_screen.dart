@@ -38,14 +38,15 @@ class _MarketsScreenState extends State<MarketsScreen> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      border: Border.all(color: Colors.black)),
+                      borderRadius: BorderRadius.circular(5.r),
+                      border: Border.all(color: Colors.grey)),
                   child: Column(
                     children: [
                       Image.network(
                         snapshot.data![index].image!,
                         height: 100.h,
-                        width: 100.w,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
                       ),
                       SizedBox(
                         height: 10.w,
@@ -62,7 +63,8 @@ class _MarketsScreenState extends State<MarketsScreen> {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 20,
-              mainAxisSpacing: 20
+              mainAxisSpacing: 20,
+              childAspectRatio: 150/130
             ),
           );
         } else {

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+import '../../../models/recommendations.dart';
 
 class SinglePaidRecommendationScreen extends StatefulWidget {
-  const SinglePaidRecommendationScreen({super.key});
+  final Recommendations? recommendations;
+
+  const SinglePaidRecommendationScreen({required this.recommendations,super.key});
 
   @override
   State<SinglePaidRecommendationScreen> createState() => _SinglePaidRecommendationScreenState();
@@ -18,7 +23,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
         backgroundColor: const Color(0XFF407bda),
         elevation: 0,
         title: Text(
-          'BUSDUSDT',
+          widget.recommendations!.name!,
           style: GoogleFonts.poppins(
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,
@@ -26,11 +31,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
           ),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
-          Image.asset(
-            'assets/1.jpeg',
+          Image.network(
+            widget.recommendations!.image!,
             height: 200.h,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -54,7 +58,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      'Buy',
+                      widget.recommendations!.action!,
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -78,7 +82,11 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      'Active',
+                      widget.recommendations!.status! == 0
+                          ? 'pending'
+                          : widget.recommendations!.status! == 1
+                          ? 'active'
+                          : 'expired',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -102,7 +110,8 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '8/31/23 15:08',
+                      DateFormat.yMd().add_jm().format(
+                          DateTime.parse(widget.recommendations!.openingTime!)),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -126,7 +135,9 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      'Swing Trade',
+                      widget.recommendations!.tradeStyle! == 0
+                          ? 'Swing Trade'
+                          : 'Interday',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -150,7 +161,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '2%',
+                      widget.recommendations!.riskPerTrade!.toString() + '%',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -159,7 +170,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                   ],
                 ),
-                SizedBox(height: 10.h),
+                const Divider(thickness: 2,color: Colors.black,),
                 Row(
                   children: [
                     const Icon(Icons.multiline_chart),
@@ -174,7 +185,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '94.225',
+                      widget.recommendations!.openPrice!.toString(),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -198,7 +209,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '94.53',
+                      widget.recommendations!.firstTargetPrice!.toString(),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -222,7 +233,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '95.3',
+                      widget.recommendations!.secondTargetPrice!.toString(),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -246,7 +257,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '94',
+                      widget.recommendations!.stopLoss!.toString(),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -270,7 +281,15 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      'waiting',
+                      widget.recommendations!.tradeResult! == 0
+                          ? 'waiting'
+                          : widget.recommendations!.tradeResult! == 1
+                          ? 'Break even'
+                          : widget.recommendations!.tradeResult! == 2
+                          ? 'Target 1'
+                          : widget.recommendations!.tradeResult! == 3
+                          ? 'Target 2'
+                          : 'Stop loss',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -279,7 +298,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                   ],
                 ),
-                SizedBox(height: 10.h),
+                const Divider(thickness: 2,color: Colors.black,),
                 Row(
                   children: [
                     const Icon(Icons.multiline_chart),
@@ -294,7 +313,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '3 Days	',
+                      widget.recommendations!.expireTime!,
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -318,7 +337,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '170%',
+                      '${widget.recommendations!.winRate!}%',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -342,7 +361,8 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     const Spacer(),
                     Text(
-                      '9/1/23 15:08',
+                      DateFormat.yMd().add_jm().format(
+                          DateTime.parse(widget.recommendations!.lastUpdate!)),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -353,24 +373,29 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 ),
                 SizedBox(height: 10.h),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Icon(Icons.multiline_chart),
                     SizedBox(width: 5.w),
-                    Text(
-                      'Comment:',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 16.sp,
-                        color: Colors.black,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Comment:',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                    const Spacer(),
-                    Text(
-                      'Confirm @ Break out',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
-                        color: Colors.black,
+                    Expanded(
+                      child: Text(
+                        widget.recommendations!.comment!,
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14.sp,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ],

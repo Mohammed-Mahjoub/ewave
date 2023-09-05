@@ -195,11 +195,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: InkWell(
-                  onTap: () async {
-                    await launchUrl(
-                        Uri.parse(
-                            'https://play.google.com/store/apps/details?id=my_teacher.com.my_teacher'),
-                        mode: LaunchMode.externalApplication);
+                  onTap: () {
+                    Navigator.pushNamed(context, '/pay_screen');
                   },
                   child: Row(
                     children: [
@@ -220,12 +217,16 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 padding: const EdgeInsets.all(16),
                 child: InkWell(
                   onTap: () async {
-                    AppSettingsPreferences.putString(key: PrefKeys.token.name, value: '');
-                   Navigator.pushNamedAndRemoveUntil(context, '/login_screen',(route) => true,);
+                    AppSettingsPreferences.putString(
+                        key: PrefKeys.token.name, value: '');
+                    Navigator.pushReplacementNamed(context, '/login_screen');
                   },
                   child: Row(
                     children: [
-                      const Icon(Icons.logout,color: Colors.red,),
+                      const Icon(
+                        Icons.logout,
+                        color: Colors.red,
+                      ),
                       SizedBox(width: 10.w),
                       Text(
                         'Logout',

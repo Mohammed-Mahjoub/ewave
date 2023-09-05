@@ -1,6 +1,5 @@
 class ApiSettings {
-
-  static const _baseUrl = 'https://c1e1-85-114-105-144.ngrok-free.app/api/v1/';
+  static const _baseUrl = 'http://192.168.1.112:4040/api/v1/';
   static const logIn = '${_baseUrl}users/login';
   static const register = '${_baseUrl}users/register';
   static const articles = '${_baseUrl}articles';
@@ -12,6 +11,7 @@ class ApiSettings {
   static const categories = '${_baseUrl}categories';
   static const recommendations = '${_baseUrl}recommendations/unpaid/';
   static const recommendationsPaid = '${_baseUrl}recommendations/paid/';
+  static const pay = '${_baseUrl}payments/pay';
 
 
 }

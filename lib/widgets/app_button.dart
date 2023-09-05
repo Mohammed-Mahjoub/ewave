@@ -30,7 +30,7 @@ class AppButton extends StatelessWidget {
         maximumSize: Size(double.infinity, 48.h),
         minimumSize: Size(double.infinity, 48.h),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.r),
+          borderRadius: BorderRadius.circular(10.r),
         ),
       ),
       child: Text(

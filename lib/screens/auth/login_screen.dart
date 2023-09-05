@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             textEditingController: _passwordEditingController,
           ),
-          SizedBox(height: 34.h),
+          SizedBox(height: 50.h),
           AppButton(
             text: 'Log in',
             onPress: () async {
