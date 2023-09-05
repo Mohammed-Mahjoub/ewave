@@ -9,16 +9,21 @@ import 'package:ewave/screens/start_screen/launch_screen.dart';
 import 'package:ewave/shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'fb/fb_notifications.dart';
 import 'firebase_options.dart';
+import 'models/Noti.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppSettingsPreferences.init();
+  Noti.initialize(FlutterLocalNotificationsPlugin(),);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FbNotifications.initNotifications();
   runApp(const MyApp());
 }
 
