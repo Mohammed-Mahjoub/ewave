@@ -3,6 +3,7 @@ import 'package:ewave/util/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_text_field.dart';
@@ -59,45 +60,30 @@ class _PayScreenState extends State<PayScreen> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: 10.h),
-          AppTextField(
-            hintText: 'Enter Your Email',
-            keyboardType: TextInputType.emailAddress,
-            textEditingController: _emailEditingController,
-          ),
+          // SizedBox(height: 10.h),
+          // AppTextField(
+          //   hintText: 'Enter Your Email',
+          //   keyboardType: TextInputType.emailAddress,
+          //   textEditingController: _emailEditingController,
+          // ),
           SizedBox(height: 50.h),
           AppButton(
             text: 'Pay',
             onPress: () async {
-              if (isFullData()) {
-                String? response = await PayController()
-                    .pay(email: _emailEditingController.text);
-                if (context.mounted) {
-                  if (response != null) {
-                    context.showSnackBar(
-                        message: 'Done Successfully', error: false);
-                    Navigator.pop(context);
-                  } else {
-                    context.showSnackBar(
-                        message: 'email is wrong', error: true);
-                  }
-                }
+              String? response = await PayController().pay();
+              if (response != null) {
+                Navigator.pop(context);
+                await launchUrl(
+                  Uri.parse(response),
+                  mode: LaunchMode.externalApplication,
+                );
               } else {
-                context.showSnackBar(
-                    message: 'Enter the required data', error: true);
+                context.showSnackBar(message: 'Something went wrong', error: true);
               }
             },
           ),
         ],
       ),
     );
-  }
-
-  bool isFullData() {
-    if (_emailEditingController.text.isNotEmpty) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
