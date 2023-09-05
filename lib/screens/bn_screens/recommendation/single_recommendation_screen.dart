@@ -58,7 +58,10 @@ class _SingleRecommendationScreenState
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Action:',
@@ -84,7 +87,10 @@ class _SingleRecommendationScreenState
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'status:',
@@ -112,7 +118,10 @@ class _SingleRecommendationScreenState
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Opening Time:',
@@ -126,7 +135,7 @@ class _SingleRecommendationScreenState
                     Text(
                       Moment(
                         DateTime.parse(widget.recommendations!.openingTime!),
-                      ).toString(),
+                      ).format("MMMM, Do dddd A hh:mm").toString(),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -138,7 +147,10 @@ class _SingleRecommendationScreenState
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Trade Style:',
@@ -164,7 +176,10 @@ class _SingleRecommendationScreenState
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Risk per Trade:',
@@ -299,7 +314,10 @@ class _SingleRecommendationScreenState
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Trade Result:',
@@ -334,7 +352,10 @@ class _SingleRecommendationScreenState
                 ),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Expird Time:',
@@ -348,8 +369,7 @@ class _SingleRecommendationScreenState
                     Text(
                       Moment(
                         DateTime.parse(widget.recommendations!.expireTime!),
-                      ).toString(),
-
+                      ).format("MMMM, Do dddd A hh:mm").toString(),
                       textAlign: TextAlign.start,
                       style: GoogleFonts.poppins(
                         fontSize: 14.sp,
@@ -361,7 +381,10 @@ class _SingleRecommendationScreenState
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Historical win rate:',
@@ -386,7 +409,10 @@ class _SingleRecommendationScreenState
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Expanded(
                       flex: 2,
@@ -403,7 +429,7 @@ class _SingleRecommendationScreenState
                       child: Text(
                         Moment(
                           DateTime.parse(widget.recommendations!.lastUpdate!),
-                        ).toString(),
+                        ).format("MMMM, Do dddd A hh:mm").toString(),
                         textAlign: TextAlign.start,
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
@@ -417,7 +443,10 @@ class _SingleRecommendationScreenState
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Expanded(
                       flex: 2,

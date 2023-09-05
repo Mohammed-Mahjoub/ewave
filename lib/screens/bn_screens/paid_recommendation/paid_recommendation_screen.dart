@@ -96,7 +96,7 @@ class _PaidRecommendationScreenState extends State<PaidRecommendationScreen> {
                                       Moment(
                                         DateTime.parse(
                                             snapshot.data![index].openingTime!),
-                                      ).toString(),
+                                      ).format("MMMM, Do dddd A hh:mm").toString(),
                                       textAlign: TextAlign.start,
                                       style: GoogleFonts.poppins(
                                         fontSize: 14.sp,
