@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-
+import 'package:moment_dart/moment_dart.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../../api/controllers/recommedations_controller.dart';
 
 class RecommendationScreen extends StatefulWidget {
@@ -16,12 +17,13 @@ class RecommendationScreen extends StatefulWidget {
   RecommendationScreen(this.id, this.name, {super.key});
 }
 
-class _RecommendationScreenState extends State<RecommendationScreen> {
+class _RecommendationScreenState extends State<RecommendationScreen> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0XFF1b1b1c),
       appBar: AppBar(
-        backgroundColor: const Color(0XFF407bda),
+        backgroundColor: const Color(0XFFFDB827),
         elevation: 0,
         title: Text(
           'Recommendations For ${widget.name}',
@@ -42,113 +44,127 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
               ),
             );
           } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              SingleRecommendationScreen(snapshot.data![index]),
-                        ));
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.r),
-                      ),
+            return Padding(
+              padding: EdgeInsets.only(top: 10.h),
+              child: ListView.builder(
+                itemCount: snapshot.data!.length,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SingleRecommendationScreen(
+                                snapshot.data![index]),
+                          ));
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5.w),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: 30.h, horizontal: 16.w),
-                        child: Row(
+                            vertical: 5.h, horizontal: 5.w),
+                        child: Column(
                           children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    snapshot.data![index].name!,
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16.sp,
-                                      color: Colors.black,
-                                    ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        snapshot.data![index].name!,
+                                        textAlign: TextAlign.start,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Text(
+                                        Moment(
+                                          DateTime.parse(
+                                              snapshot.data![index].openingTime!),
+                                        ).format("MMMM, Do dddd A hh:mm").toString(),
+                                        textAlign: TextAlign.start,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14.sp,
+                                          color: Colors.grey.shade200,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    DateFormat.yMd().add_jm().format(
-                                        DateTime.parse(
-                                            snapshot.data![index].createdAt!)),
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14.sp,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    snapshot.data![index].status! == 0
-                                        ? 'pending'
-                                        : snapshot.data![index].status! == 1
-                                            ? 'active'
-                                            : 'expired',
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14.sp,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  Text(
-                                    snapshot.data![index].tradeResult! == 0
-                                        ? 'waiting'
-                                        : snapshot.data![index].tradeResult! ==
-                                                1
-                                            ? 'Break even'
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            snapshot.data![index].status! == 0
+                                                ? 'pending'
+                                                : snapshot.data![index].status! == 1
+                                                    ? 'active'
+                                                    : 'expired',
+                                            textAlign: TextAlign.start,
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 18.sp,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          snapshot.data![index].status! == 1 ? SpinKitThreeBounce(
+                                            color: Colors.green,
+                                            size: 10,
+                                            controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200)),
+                                          ):SizedBox(height: 0.h),
+                                        ],
+                                      ),
+                                      Text(
+                                        snapshot.data![index].tradeResult! == 0
+                                            ? 'waiting'
                                             : snapshot.data![index]
                                                         .tradeResult! ==
-                                                    2
-                                                ? 'Target 1'
+                                                    1
+                                                ? 'Break even'
                                                 : snapshot.data![index]
                                                             .tradeResult! ==
-                                                        3
-                                                    ? 'Target 2'
-                                                    : 'Stop loss',
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14.sp,
-                                      color: Colors.black,
-                                    ),
+                                                        2
+                                                    ? 'Target 1'
+                                                    : snapshot.data![index]
+                                                                .tradeResult! ==
+                                                            3
+                                                        ? 'Target 2'
+                                                        : 'Stop loss',
+                                        textAlign: TextAlign.start,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Text(
+                                  snapshot.data![index].action!,
+                                  textAlign: TextAlign.start,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 24.sp,
+                                    color: snapshot.data![index].action! == 'Sell'
+                                        ? Colors.red
+                                        : Colors.green,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              snapshot.data![index].action!,
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.poppins(
-                                fontSize: 16.sp,
-                                color: snapshot.data![index].action! == 'Sell'
-                                    ? Colors.red
-                                    : Colors.green,
-                              ),
-                            ),
+                            const Divider(thickness: 1,color: Colors.white,),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           } else {
             return Center(

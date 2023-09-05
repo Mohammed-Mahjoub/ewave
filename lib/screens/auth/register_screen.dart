@@ -15,8 +15,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  late TextEditingController _fnameEditingController;
-  late TextEditingController _lnameEditingController;
   late TextEditingController _emailEditingController;
   late TextEditingController _passwordEditingController;
   late TextEditingController _confirmPasswordEditingController;
@@ -28,8 +26,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void initState() {
     super.initState();
-    _fnameEditingController = TextEditingController();
-    _lnameEditingController = TextEditingController();
     _emailEditingController = TextEditingController();
     _passwordEditingController = TextEditingController();
     _confirmPasswordEditingController = TextEditingController();
@@ -38,8 +34,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    _fnameEditingController.dispose();
-    _lnameEditingController.dispose();
     _emailEditingController.dispose();
     _passwordEditingController.dispose();
     _confirmPasswordEditingController.dispose();
@@ -47,14 +41,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
+  bool val = true;
+
   void getSpecialty() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0XFF1b1b1c),
       appBar: AppBar(
-        backgroundColor: const Color(0XFF407bda),
+        backgroundColor: const Color(0XFFFDB827),
         elevation: 0,
         title: Text(
           'Register',
@@ -73,21 +69,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
+              color: Colors.white,
             ),
           ),
           SizedBox(height: 10.h),
-          AppTextField(
-            hintText: 'Enter Your First Name ',
-            keyboardType: TextInputType.text,
-            textEditingController: _fnameEditingController,
-          ),
-          SizedBox(height: 20.h),
-          AppTextField(
-            hintText: 'Enter Your Last Name ',
-            keyboardType: TextInputType.text,
-            textEditingController: _lnameEditingController,
-          ),
-          SizedBox(height: 20.h),
           AppTextField(
             hintText: 'Enter Your Email ',
             keyboardType: TextInputType.emailAddress,
@@ -129,14 +114,55 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           ),
-          SizedBox(height: 50.h),
+          SizedBox(height: 20.h),
+          InkWell(
+            onTap: () {
+              setState(() {
+                val = !val;
+              });
+            },
+            child: Row(
+              children: [
+                Checkbox(
+                  value: val,
+                  onChanged: (value) {
+                    setState(() {
+                      val = !val;
+                    });
+                  },
+                ),
+                Text(
+                  'Accept privacy policy',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+                // const Spacer(),
+                // TextButton(
+                //   onPressed: () {
+                //     _showBottomSheet(context);
+                //   },
+                //   child: Text(
+                //     AppLocalizations.of(context)!.forget_password,
+                //     style: GoogleFonts.poppins(
+                //       fontSize: 15.sp,
+                //       fontWeight: FontWeight.w500,
+                //       color: Colors.red,
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20.h),
           AppButton(
             text: 'Sign up',
             onPress: () async {
-              if(isFullData()){
+              if (isFullData()) {
                 bool register = await AuthController().register(
                   email: _emailEditingController.text,
-                  name: '${_fnameEditingController.text} ${_lnameEditingController.text}',
                   mobileNumber: _mobileEditingController.text,
                   password: _passwordEditingController.text,
                   passwordConfirm: _confirmPasswordEditingController.text,
@@ -149,11 +175,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         message: 'Something went wrong', error: true);
                   }
                 }
-              }else{
+              } else {
                 context.showSnackBar(
                     message: 'Enter the required data', error: true);
               }
-
             },
           ),
           Row(
@@ -162,7 +187,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Text(
                 'You Have An Account?',
                 style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w400, fontSize: 14.sp),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14.sp,
+                  color: Colors.white,
+                ),
               ),
               TextButton(
                 onPressed: () {
@@ -181,19 +209,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  bool isFullData(){
-    if(
-    _emailEditingController.text.isNotEmpty &&
-    _mobileEditingController.text.isNotEmpty &&
-    _fnameEditingController.text.isNotEmpty &&
-    _lnameEditingController.text.isNotEmpty &&
-    _passwordEditingController.text.isNotEmpty &&
-    _confirmPasswordEditingController.text.isNotEmpty
-    ){
+  bool isFullData() {
+    if (_emailEditingController.text.isNotEmpty &&
+        _mobileEditingController.text.isNotEmpty &&
+        _passwordEditingController.text.isNotEmpty &&
+        _confirmPasswordEditingController.text.isNotEmpty &&
+        val != false) {
       return true;
-    }else{
+    } else {
       return false;
     }
-
   }
 }

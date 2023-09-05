@@ -3,6 +3,7 @@ import 'package:ewave/screens/auth/enter_email_screen.dart';
 import 'package:ewave/screens/auth/forget_password_screen.dart';
 import 'package:ewave/screens/auth/login_screen.dart';
 import 'package:ewave/screens/auth/register_screen.dart';
+import 'package:ewave/screens/bn_screens/blog/single_blog.dart';
 import 'package:ewave/screens/bn_screens/bottom_navigation_screen.dart';
 import 'package:ewave/screens/bn_screens/drower/pay_screen.dart';
 import 'package:ewave/screens/bn_screens/drower/privacy_policy_screen.dart';

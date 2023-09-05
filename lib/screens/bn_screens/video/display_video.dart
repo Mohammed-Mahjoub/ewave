@@ -5,7 +5,6 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../models/post.dart';
 
-
 class DisplayVideoScreen extends StatefulWidget {
   final Post post;
 
@@ -45,26 +44,27 @@ class _DisplayVideoScreenState extends State<DisplayVideoScreen> {
 
   @override
   Widget build(BuildContext context) => YoutubePlayerBuilder(
-    player: YoutubePlayer(controller: controller),
-    builder: (context, player) => Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0XFF407bda),
-        elevation: 0,
-        title: Text(
-          widget.post.title!,
-          style: GoogleFonts.poppins(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
+        player: YoutubePlayer(controller: controller),
+        builder: (context, player) => Scaffold(
+          backgroundColor: const Color(0XFF1b1b1c),
+          appBar: AppBar(
+            backgroundColor: const Color(0XFFFDB827),
+            elevation: 0,
+            title: Text(
+              widget.post.title!,
+              style: GoogleFonts.poppins(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          body: ListView(
+            children: [
+              player,
+              SizedBox(height: 10.h),
+            ],
           ),
         ),
-      ),
-      body: ListView(
-        children: [
-          player,
-          SizedBox(height: 10.h),
-        ],
-      ),
-    ),
-  );
+      );
 }

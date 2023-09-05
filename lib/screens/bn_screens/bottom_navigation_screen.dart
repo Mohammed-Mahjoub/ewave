@@ -7,6 +7,7 @@ import 'package:ewave/screens/bn_screens/video/video_screen.dart';
 import 'package:ewave/shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/bn_screen.dart';
@@ -24,16 +25,16 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     final List<BnScreen> screens = <BnScreen>[
-      const BnScreen(title: 'Blog', widget: BlogScreen()),
-      const BnScreen(title: 'Video', widget: VideoScreen()),
       const BnScreen(title: 'Recommendations', widget: MarketsScreen()),
       const BnScreen(
           title: 'Paid recommendations', widget: MarketsPaidScreen()),
+      const BnScreen(title: 'Blog', widget: BlogScreen()),
+      const BnScreen(title: 'Video', widget: VideoScreen()),
     ];
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0XFF1b1b1c),
       appBar: AppBar(
-        backgroundColor: const Color(0XFF407bda),
+        backgroundColor: const Color(0XFFFDB827),
         elevation: 0,
         title: Text(
           screens[_selectedPageIndex].title,
@@ -55,7 +56,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             setState(() => _selectedPageIndex = selectedPageIndex);
           },
           currentIndex: _selectedPageIndex,
-          backgroundColor: const Color(0XFF407bda),
+          backgroundColor: const Color(0XFFFDB827),
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
@@ -78,49 +79,25 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           unselectedFontSize: 10.sp,
           iconSize: 24,
           elevation: 20,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.home,
-                size: 30,
-              ),
-              icon: Icon(
-                Icons.home_outlined,
-                size: 30,
-              ),
+              activeIcon: SvgPicture.asset('assets/chart.svg',height: 25.h,width: 25.w,color: Colors.white,),
+              icon: SvgPicture.asset('assets/chart.svg',height: 25.h,width: 25.w,color: Colors.white,),
               label: '',
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.play_arrow,
-                size: 30,
-              ),
-              icon: Icon(
-                Icons.play_arrow_outlined,
-                size: 30,
-              ),
+              activeIcon: SvgPicture.asset('assets/payVideo.svg',height: 25.h,width: 25.w,color: Colors.white,),
+              icon: SvgPicture.asset('assets/payVideo.svg',height: 25.h,width: 25.w,color: Colors.white,),
               label: '',
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.receipt,
-                size: 30,
-              ),
-              icon: Icon(
-                Icons.receipt_long_outlined,
-                size: 30,
-              ),
+              activeIcon: SvgPicture.asset('assets/blog.svg',height: 25.h,width: 25.w,color: Colors.white,),
+              icon: SvgPicture.asset('assets/blog.svg',height: 25.h,width: 25.w,color: Colors.white,),
               label: '',
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.recommend,
-                size: 30,
-              ),
-              icon: Icon(
-                Icons.recommend_outlined,
-                size: 30,
-              ),
+              activeIcon: SvgPicture.asset('assets/video.svg',height: 25.h,width: 25.w,color: Colors.white,),
+              icon: SvgPicture.asset('assets/video.svg',height: 25.h,width: 25.w,color: Colors.white,),
               label: '',
             ),
           ],
@@ -128,6 +105,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       ),
       drawer: Drawer(
         width: 305.w,
+        backgroundColor: const Color(0XFF1b1b1c),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +113,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               Container(
                 width: double.infinity,
                 height: 200.h,
-                color: const Color(0XFF407bda),
+                color: const Color(0XFFFDB827),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: Row(
@@ -152,7 +130,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                           Text(
                             AppSettingsPreferences().user().name!,
                             style: GoogleFonts.poppins(
-                              fontSize: 14.sp,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -160,7 +138,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                           Text(
                             AppSettingsPreferences().user().role!,
                             style: GoogleFonts.poppins(
-                              fontSize: 12.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -179,13 +157,17 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                   },
                   child: Row(
                     children: [
-                      const Icon(Icons.policy_outlined),
+                      const Icon(
+                        Icons.policy_outlined,
+                        color: Colors.white,
+                      ),
                       SizedBox(width: 10.w),
                       Text(
                         'Privacy Policy',
                         style: GoogleFonts.poppins(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w500,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -200,13 +182,17 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                   },
                   child: Row(
                     children: [
-                      const Icon(Icons.credit_card_outlined),
+                      const Icon(
+                        Icons.credit_card_outlined,
+                        color: Colors.white,
+                      ),
                       SizedBox(width: 10.w),
                       Text(
-                        'Paid',
+                        'Pay',
                         style: GoogleFonts.poppins(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w500,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -233,6 +219,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                         style: GoogleFonts.poppins(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w500,
+                          color: Colors.white,
                         ),
                       ),
                     ],

@@ -299,6 +299,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.7.0"
+  flutter_spinkit:
+    dependency: "direct main"
+    description:
+      name: flutter_spinkit
+      sha256: b39c753e909d4796906c5696a14daf33639a76e017136c8d82bf3e620ce5bb8e
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -413,6 +421,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
+  moment_dart:
+    dependency: "direct main"
+    description:
+      name: moment_dart
+      sha256: c4c121d42c800182bb6f24a6e650a77c589c94374852bba130c89fa9bf3dc747
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   octo_image:
     dependency: transitive
     description:

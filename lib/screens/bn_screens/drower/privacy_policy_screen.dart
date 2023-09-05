@@ -14,8 +14,9 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0XFF1b1b1c),
       appBar: AppBar(
-        backgroundColor: const Color(0XFF407bda),
+        backgroundColor: const Color(0XFFFDB827),
         elevation: 0,
         title: Text(
           'Privacy Policy',
@@ -29,24 +30,29 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
       body: FutureBuilder(
         future: SettingsController().getSettings(),
         builder: (context, snapshot) {
-          if(snapshot.connectionState == ConnectionState.waiting){
-            return const Center(child:  CircularProgressIndicator(color: Colors.blue,),);
-          }else if(snapshot.hasData){
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.blue,
+              ),
+            );
+          } else if (snapshot.hasData) {
             return Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                 snapshot.data!
-                 , style: GoogleFonts.poppins(
+                snapshot.data!,
+                style: GoogleFonts.poppins(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w500,
+                  color: Colors.white,
                 ),
               ),
             );
-          }else{
+          } else {
             return Container();
           }
-
-      },),
+        },
+      ),
     );
   }
 }

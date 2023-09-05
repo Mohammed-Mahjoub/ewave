@@ -1,6 +1,7 @@
 import 'package:ewave/screens/bn_screens/recommendation/recommendation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../api/controllers/categories_controller.dart';
 
@@ -32,7 +33,8 @@ class _MarketsScreenState extends State<MarketsScreen> {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return  RecommendationScreen(snapshot.data![index].sId!,snapshot.data![index].name!);
+                      return RecommendationScreen(snapshot.data![index].sId!,
+                          snapshot.data![index].name!);
                     },
                   ));
                 },
@@ -53,7 +55,10 @@ class _MarketsScreenState extends State<MarketsScreen> {
                       ),
                       Text(
                         snapshot.data![index].name!,
-                        style: TextStyle(fontSize: 20.sp),
+                        style: GoogleFonts.poppins(
+                          fontSize: 20.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -61,11 +66,10 @@ class _MarketsScreenState extends State<MarketsScreen> {
               );
             },
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              childAspectRatio: 150/130
-            ),
+                crossAxisCount: 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                childAspectRatio: 150 / 130),
           );
         } else {
           return Container();

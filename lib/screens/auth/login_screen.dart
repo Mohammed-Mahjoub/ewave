@@ -38,9 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0XFF1b1b1c),
       appBar: AppBar(
-        backgroundColor: const Color(0XFF407bda),
+        backgroundColor: const Color(0XFFFDB827),
         elevation: 0,
         title: Text(
           'Login',
@@ -59,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
+              color: Colors.white,
             ),
           ),
           SizedBox(height: 10.h),
@@ -101,8 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         message: 'The password or email is wrong', error: true);
                   }
                 }
-              }else{
-                context.showSnackBar(message: 'Enter the required data', error: true);
+              } else {
+                context.showSnackBar(
+                    message: 'Enter the required data', error: true);
               }
             },
           ),
@@ -125,7 +127,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Text(
                 'Don’t Have An Account?',
                 style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w400, fontSize: 14.sp),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14.sp,
+                  color: Colors.white,
+                ),
               ),
               TextButton(
                 onPressed: () {

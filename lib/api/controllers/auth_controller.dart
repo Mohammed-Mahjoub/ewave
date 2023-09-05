@@ -26,7 +26,6 @@ class AuthController {
 
   Future<bool> register({
     required String email,
-    required String name,
     required String mobileNumber,
     required String password,
     required String passwordConfirm,
@@ -34,7 +33,6 @@ class AuthController {
     var url = Uri.parse(ApiSettings.register);
     var response = await http.post(url, body: {
       'email': email,
-      'name': name,
       'mobile_number': mobileNumber,
       'password': password,
       'passwordConfirm': passwordConfirm,

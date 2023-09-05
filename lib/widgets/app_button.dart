@@ -26,7 +26,7 @@ class AppButton extends StatelessWidget {
       onPressed: onPress,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
-        backgroundColor: buttonColor ?? const Color(0XFF407bda),
+        backgroundColor: buttonColor ?? const Color(0XFFFDB827),
         maximumSize: Size(double.infinity, 48.h),
         minimumSize: Size(double.infinity, 48.h),
         shape: RoundedRectangleBorder(

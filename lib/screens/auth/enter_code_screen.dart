@@ -9,11 +9,9 @@ import '../../widgets/app_text_field.dart';
 import 'forget_password_screen.dart';
 
 class EnterCodeScreen extends StatefulWidget {
+  String? email;
 
-   String? email;
-
-
-   EnterCodeScreen(this.email);
+  EnterCodeScreen(this.email);
 
   @override
   State<EnterCodeScreen> createState() => _EnterCodeScreenState();
@@ -37,9 +35,9 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0XFF1b1b1c),
       appBar: AppBar(
-        backgroundColor: const Color(0XFF407bda),
+        backgroundColor: const Color(0XFFFDB827),
         elevation: 0,
         title: Text(
           'Enter Code',
@@ -58,6 +56,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
+              color: Colors.white,
             ),
           ),
           SizedBox(height: 10.h),
@@ -70,29 +69,32 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
           AppButton(
             text: 'Next',
             onPress: () async {
-              if(isFullData()){
-                bool isSendCode = await AuthController().verifyCode(email: widget.email!,code:_codeEditingController.text);
+              if (isFullData()) {
+                bool isSendCode = await AuthController().verifyCode(
+                    email: widget.email!, code: _codeEditingController.text);
 
                 if (context.mounted) {
-                  if(isSendCode){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return ForgetPasswordScreen(widget.email!);
-                    },));
-                  }else{
+                  if (isSendCode) {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return ForgetPasswordScreen(widget.email!);
+                      },
+                    ));
+                  } else {
                     context.showSnackBar(message: 'Code is wrong', error: true);
                   }
                 }
-              }else{
-                context.showSnackBar(message: 'Enter the required data', error: true);
+              } else {
+                context.showSnackBar(
+                    message: 'Enter the required data', error: true);
               }
-
-
             },
           ),
         ],
       ),
     );
   }
+
   bool isFullData() {
     if (_codeEditingController.text.isNotEmpty) {
       return true;

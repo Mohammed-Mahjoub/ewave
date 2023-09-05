@@ -2,6 +2,7 @@ import 'package:ewave/screens/bn_screens/paid_recommendation/paid_recommendation
 import 'package:ewave/screens/bn_screens/recommendation/recommendation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../api/controllers/categories_controller.dart';
 
@@ -31,11 +32,15 @@ class _MarketsPaidScreenState extends State<MarketsPaidScreen> {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return  PaidRecommendationScreen(snapshot.data![index].sId!,snapshot.data![index].name!);
-                    },
-                  ),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return PaidRecommendationScreen(
+                            snapshot.data![index].sId!,
+                            snapshot.data![index].name!);
+                      },
+                    ),
                   );
                 },
                 child: Container(
@@ -55,7 +60,10 @@ class _MarketsPaidScreenState extends State<MarketsPaidScreen> {
                       ),
                       Text(
                         snapshot.data![index].name!,
-                        style: TextStyle(fontSize: 20.sp),
+                        style: GoogleFonts.poppins(
+                          fontSize: 20.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -66,16 +74,20 @@ class _MarketsPaidScreenState extends State<MarketsPaidScreen> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
-                childAspectRatio: 150/130
-            ),
+                childAspectRatio: 150 / 130),
           );
         } else {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error_outline,size: 50.sp,),
-                SizedBox(height: 20.h,),
+                Icon(
+                  Icons.error_outline,
+                  size: 50.sp,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
                 const Text('No Data'),
               ],
             ),
