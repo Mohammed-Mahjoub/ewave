@@ -2,6 +2,7 @@ import 'package:ewave/screens/bn_screens/paid_recommendation/single_paid_recomme
 import 'package:ewave/util/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:moment_dart/moment_dart.dart';
@@ -23,7 +24,7 @@ class PaidRecommendationScreen extends StatefulWidget {
       _PaidRecommendationScreenState();
 }
 
-class _PaidRecommendationScreenState extends State<PaidRecommendationScreen> {
+class _PaidRecommendationScreenState extends State<PaidRecommendationScreen> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,17 +111,26 @@ class _PaidRecommendationScreenState extends State<PaidRecommendationScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      snapshot.data![index].status! == 0
-                                          ? 'pending'
-                                          : snapshot.data![index].status! == 1
-                                              ? 'active'
-                                              : 'expired',
-                                      textAlign: TextAlign.start,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14.sp,
-                                        color: Colors.white,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          snapshot.data![index].status! == 0
+                                              ? 'pending'
+                                              : snapshot.data![index].status! == 1
+                                                  ? 'active'
+                                                  : 'expired',
+                                          textAlign: TextAlign.start,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 14.sp,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        snapshot.data![index].status! == 1 ? SpinKitThreeBounce(
+                                          color: Colors.green,
+                                          size: 10,
+                                          controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200)),
+                                        ):SizedBox(height: 0.h),
+                                      ],
                                     ),
                                     Text(
                                       snapshot.data![index].tradeResult! == 0
