@@ -25,24 +25,33 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     final List<BnScreen> screens = <BnScreen>[
-      const BnScreen(title: 'Recommendations', widget: MarketsScreen()),
-      const BnScreen(
-          title: 'Paid recommendations', widget: MarketsPaidScreen()),
+      const BnScreen(title: 'Market Analysis', widget: MarketsScreen()),
+      const BnScreen(title: 'EWave Forecast', widget: MarketsPaidScreen()),
       const BnScreen(title: 'Blog', widget: BlogScreen()),
-      const BnScreen(title: 'Video', widget: VideoScreen()),
+      const BnScreen(title: 'Trading library', widget: VideoScreen()),
     ];
     return Scaffold(
       backgroundColor: const Color(0XFF1b1b1c),
       appBar: AppBar(
         backgroundColor: const Color(0XFFFDB827),
         elevation: 0,
-        title: Text(
-          screens[_selectedPageIndex].title,
-          style: GoogleFonts.poppins(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
+        title: Row(
+          children: [
+            Text(
+              screens[_selectedPageIndex].title,
+              style: GoogleFonts.poppins(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+            screens[_selectedPageIndex].title == 'EWave Forecast'
+                ? const Icon(
+                    Icons.star,
+                    color: Colors.white,
+                  )
+                : SizedBox(height: 0.h),
+          ],
         ),
       ),
       body: screens[_selectedPageIndex].widget,
@@ -81,23 +90,63 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           elevation: 20,
           items: [
             BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset('assets/chart.svg',height: 25.h,width: 25.w,color: Colors.white,),
-              icon: SvgPicture.asset('assets/chart.svg',height: 25.h,width: 25.w,color: Colors.white,),
+              activeIcon: SvgPicture.asset(
+                'assets/chart.svg',
+                height: 25.h,
+                width: 25.w,
+                color: Colors.white,
+              ),
+              icon: SvgPicture.asset(
+                'assets/chart.svg',
+                height: 25.h,
+                width: 25.w,
+                color: Colors.white,
+              ),
               label: '',
             ),
             BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset('assets/payVideo.svg',height: 25.h,width: 25.w,color: Colors.white,),
-              icon: SvgPicture.asset('assets/payVideo.svg',height: 25.h,width: 25.w,color: Colors.white,),
+              activeIcon: SvgPicture.asset(
+                'assets/payVideo.svg',
+                height: 25.h,
+                width: 25.w,
+                color: Colors.white,
+              ),
+              icon: SvgPicture.asset(
+                'assets/payVideo.svg',
+                height: 25.h,
+                width: 25.w,
+                color: Colors.white,
+              ),
               label: '',
             ),
             BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset('assets/blog.svg',height: 25.h,width: 25.w,color: Colors.white,),
-              icon: SvgPicture.asset('assets/blog.svg',height: 25.h,width: 25.w,color: Colors.white,),
+              activeIcon: SvgPicture.asset(
+                'assets/blog.svg',
+                height: 25.h,
+                width: 25.w,
+                color: Colors.white,
+              ),
+              icon: SvgPicture.asset(
+                'assets/blog.svg',
+                height: 25.h,
+                width: 25.w,
+                color: Colors.white,
+              ),
               label: '',
             ),
             BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset('assets/video.svg',height: 25.h,width: 25.w,color: Colors.white,),
-              icon: SvgPicture.asset('assets/video.svg',height: 25.h,width: 25.w,color: Colors.white,),
+              activeIcon: SvgPicture.asset(
+                'assets/video.svg',
+                height: 25.h,
+                width: 25.w,
+                color: Colors.white,
+              ),
+              icon: SvgPicture.asset(
+                'assets/video.svg',
+                height: 25.h,
+                width: 25.w,
+                color: Colors.white,
+              ),
               label: '',
             ),
           ],
