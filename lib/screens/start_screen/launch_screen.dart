@@ -14,10 +14,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      if(AppSettingsPreferences.getString(key: PrefKeys.token.name) != ''){
-        Navigator.pushReplacementNamed(context, '/bn_screen');
-      }else{
+      print(AppSettingsPreferences.getString(key: PrefKeys.token.name));
+      if(AppSettingsPreferences.getString(key: PrefKeys.token.name) == null || AppSettingsPreferences.getString(key: PrefKeys.token.name) == ''){
         Navigator.pushReplacementNamed(context, '/login_screen');
+      }else{
+        Navigator.pushReplacementNamed(context, '/bn_screen');
       }
 
     });

@@ -146,7 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Navigator.pushReplacementNamed(context, '/login_screen');
                   } else {
                     context.showSnackBar(
-                        message: 'The password or email is wrong', error: true);
+                        message: 'Something went wrong', error: true);
                   }
                 }
               }else{
