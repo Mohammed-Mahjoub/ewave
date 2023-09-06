@@ -37,7 +37,7 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
         ),
       ),
       body: FutureBuilder(
-        future: VideosController().getAllVideosPay(),
+        future: VideosController().getAllVideos(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
