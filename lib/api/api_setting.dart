@@ -3,7 +3,8 @@ class ApiSettings {
   static const logIn = '${_baseUrl}users/login';
   static const register = '${_baseUrl}users/register';
   static const articles = '${_baseUrl}articles';
-  static const videos = '${_baseUrl}videos?page=-1';
+  static const videos = '${_baseUrl}videos/free';
+  static const videosPay = '${_baseUrl}videos/paid';
   static const settings = '${_baseUrl}settings/';
   static const forgotPassword = '${_baseUrl}users/forgotPassword';
   static const verifyCode = '${_baseUrl}users/verifyCode';

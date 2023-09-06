@@ -27,31 +27,38 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           ),
         ),
       ),
-      body: FutureBuilder(
-        future: SettingsController().getSettings(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.blue,
-              ),
-            );
-          } else if (snapshot.hasData) {
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                snapshot.data!,
-                style: GoogleFonts.poppins(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: FutureBuilder(
+          future: SettingsController().getSettings(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
                 ),
-              ),
-            );
-          } else {
-            return Container();
-          }
-        },
+              );
+            } else if (snapshot.hasData) {
+              return ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      snapshot.data!,
+                      style: GoogleFonts.poppins(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }

@@ -18,7 +18,7 @@ class _LaunchScreenState extends State<LaunchScreen>  with FbNotifications{
     Future.delayed(const Duration(seconds: 2), () {
       print(AppSettingsPreferences.getString(key: PrefKeys.token.name));
       if(AppSettingsPreferences.getString(key: PrefKeys.token.name) == null || AppSettingsPreferences.getString(key: PrefKeys.token.name) == ''){
-        Navigator.pushReplacementNamed(context, '/login_screen');
+        Navigator.pushReplacementNamed(context, '/start_screen');
       }else{
         Navigator.pushReplacementNamed(context, '/bn_screen');
       }
@@ -31,15 +31,15 @@ class _LaunchScreenState extends State<LaunchScreen>  with FbNotifications{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFF0c1f64),
+      backgroundColor: Colors.black,
 
       body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Center(
           child: Image.asset(
-            'assets/logo.png',
-            height: 250.h,
+            'assets/splash.jpg',
+            fit: BoxFit.cover,
           ),
         ),
       ),

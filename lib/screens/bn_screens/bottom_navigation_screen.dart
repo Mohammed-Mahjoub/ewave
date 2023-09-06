@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moment_dart/moment_dart.dart';
 import '../../models/bn_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   Widget build(BuildContext context) {
     final List<BnScreen> screens = <BnScreen>[
       const BnScreen(title: 'Market Analysis', widget: RecommendationScreen()),
-      const BnScreen(title: 'EWave VIP', widget: MarketsPaidScreen()),
+      const BnScreen(title: 'EWave Forecast', widget: MarketsPaidScreen()),
       const BnScreen(title: 'Trading library', widget: VideoScreen()),
       const BnScreen(title: 'Blog', widget: BlogScreen()),
     ];
@@ -42,7 +43,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 color: Colors.white,
               ),
             ),
-            screens[_selectedPageIndex].title == 'EWave VIP'
+            screens[_selectedPageIndex].title == 'EWave Forecast'
                 ? const Icon(
                     Icons.star,
                     color: Colors.white,
@@ -102,18 +103,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               label: '',
             ),
             BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset(
-                'assets/payVideo.svg',
-                height: 25.h,
-                width: 25.w,
-                color: Colors.white,
-              ),
-              icon: SvgPicture.asset(
-                'assets/payVideo.svg',
-                height: 25.h,
-                width: 25.w,
-                color: Colors.white,
-              ),
+              activeIcon: Text('VIP',style: GoogleFonts.poppins(fontSize: 20.sp,color: Colors.white,),),
+              icon: Text('VIP',style: GoogleFonts.poppins(fontSize: 20.sp,color: Colors.white,),),
               label: '',
             ),
             BottomNavigationBarItem(
@@ -233,7 +224,15 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                         color: Colors.white,
                       ),
                       SizedBox(width: 10.w),
+                      AppSettingsPreferences().user().expire_payment != '' ?
                       Text(
+                        'Pay End on: ',
+                        style: GoogleFonts.poppins(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ):Text(
                         'Pay',
                         style: GoogleFonts.poppins(
                           fontSize: 18.sp,
@@ -241,6 +240,18 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                           color: Colors.white,
                         ),
                       ),
+                      Text(
+                          AppSettingsPreferences().user().expire_payment != '' ?
+                        Moment(
+                          DateTime.parse(AppSettingsPreferences().user().expire_payment!),
+                        ).format("MMMM, Do").toString() : '',
+                        style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+
                     ],
                   ),
                 ),

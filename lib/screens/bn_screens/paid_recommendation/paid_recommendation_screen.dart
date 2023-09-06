@@ -23,6 +23,8 @@ class PaidRecommendationScreen extends StatefulWidget {
 
 class _PaidRecommendationScreenState extends State<PaidRecommendationScreen>
     with TickerProviderStateMixin {
+  bool val = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -211,21 +213,54 @@ class _PaidRecommendationScreenState extends State<PaidRecommendationScreen>
                   SizedBox(
                     height: 20.h,
                   ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        val = !val;
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          value: val,
+                          onChanged: (value) {
+                            setState(() {
+                              val = !val;
+                            });
+                          },
+                        ),
+                        Text(
+                          'Accept privacy policy',
+                          style: GoogleFonts.poppins(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: AppButton(
                       text: 'Pay',
+                      fontSize: 18.sp,
                       onPress: () async {
-                        String? response = await PayController().pay();
-                        if (response != null) {
-                          Navigator.pop(context);
-                          await launchUrl(
-                            Uri.parse(response),
-                            mode: LaunchMode.externalApplication,
-                          );
-                        } else {
-                          context.showSnackBar(
-                              message: 'Something went wrong', error: true);
+                        if(val==true){
+                          String? response = await PayController().pay();
+                          if (response != null) {
+                            Navigator.pop(context);
+                            await launchUrl(
+                              Uri.parse(response),
+                              mode: LaunchMode.externalApplication,
+                            );
+                            Navigator.pushNamedAndRemoveUntil(context, '/login_screen', (route) => true);
+                          } else {
+                            context.showSnackBar(message: 'Something went wrong', error: true);
+                          }
+                        }else{
+                          context.showSnackBar(message: 'Enter on check box', error: true);
                         }
                       },
                     ),

@@ -17,6 +17,7 @@ class PayScreen extends StatefulWidget {
 
 class _PayScreenState extends State<PayScreen> {
   late TextEditingController _emailEditingController;
+  bool val = true;
 
   @override
   void initState() {
@@ -68,19 +69,66 @@ class _PayScreenState extends State<PayScreen> {
           //   textEditingController: _emailEditingController,
           // ),
           SizedBox(height: 50.h),
+          InkWell(
+            onTap: () {
+              setState(() {
+                val = !val;
+              });
+            },
+            child: Row(
+              children: [
+                Checkbox(
+                  value: val,
+                  onChanged: (value) {
+                    setState(() {
+                      val = !val;
+                    });
+                  },
+                ),
+                Text(
+                  'Accept privacy policy',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+                // const Spacer(),
+                // TextButton(
+                //   onPressed: () {
+                //     _showBottomSheet(context);
+                //   },
+                //   child: Text(
+                //     AppLocalizations.of(context)!.forget_password,
+                //     style: GoogleFonts.poppins(
+                //       fontSize: 15.sp,
+                //       fontWeight: FontWeight.w500,
+                //       color: Colors.red,
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10.h),
           AppButton(
             text: 'Pay',
             fontSize: 18.sp,
             onPress: () async {
-              String? response = await PayController().pay();
-              if (response != null) {
-                Navigator.pop(context);
-                await launchUrl(
-                  Uri.parse(response),
-                  mode: LaunchMode.externalApplication,
-                );
-              } else {
-                context.showSnackBar(message: 'Something went wrong', error: true);
+              if(val==true){
+                String? response = await PayController().pay();
+                if (response != null) {
+                  Navigator.pop(context);
+                  await launchUrl(
+                    Uri.parse(response),
+                    mode: LaunchMode.externalApplication,
+                  );
+                  Navigator.pushNamedAndRemoveUntil(context, '/login_screen', (route) => true);
+                } else {
+                  context.showSnackBar(message: 'Something went wrong', error: true);
+                }
+              }else{
+                context.showSnackBar(message: 'Enter on check box', error: true);
               }
             },
           ),
