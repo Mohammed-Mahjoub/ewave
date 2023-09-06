@@ -9,7 +9,7 @@ class ApiSettings {
   static const verifyCode = '${_baseUrl}users/verifyCode';
   static const resetPassword = '${_baseUrl}users/resetPassword';
   static const categories = '${_baseUrl}categories';
-  static const recommendations = '${_baseUrl}recommendations/unpaid/';
+  static const recommendations = '${_baseUrl}recommendations/unpaid';
   static const recommendationsPaid = '${_baseUrl}recommendations/paid/';
   static const pay = '${_baseUrl}payments/pay';
 }

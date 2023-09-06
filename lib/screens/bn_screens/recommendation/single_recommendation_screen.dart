@@ -1,9 +1,9 @@
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import "package:moment_dart/moment_dart.dart";
-
 import '../../../models/recommendations.dart';
 
 class SingleRecommendationScreen extends StatefulWidget {
@@ -18,15 +18,6 @@ class SingleRecommendationScreen extends StatefulWidget {
 
 class _SingleRecommendationScreenState
     extends State<SingleRecommendationScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print('**********' +
-        Moment(DateTime(1971, 2, 14), localization: LocalizationEnUs())
-            .format("[YEAR:] YYYY, [MONTH:] MMMM, Do dddd A hh:mm"));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,11 +36,19 @@ class _SingleRecommendationScreenState
       ),
       body: ListView(
         children: [
-          Image.network(
-            widget.recommendations!.image!,
-            height: 200.h,
-            width: double.infinity,
-            fit: BoxFit.cover,
+          InkWell(
+            onTap: (){
+              final imageProvider = Image.network(widget.recommendations!.image!).image;
+              showImageViewer(context, imageProvider, onViewerDismissed: () {
+                print("dismissed");
+              });
+            },
+            child: Image.network(
+              widget.recommendations!.image!,
+              height: 200.h,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
           ),
           SizedBox(height: 10.h),
           Padding(
@@ -117,29 +116,34 @@ class _SingleRecommendationScreenState
                 ),
                 SizedBox(height: 10.h),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Icon(
                       Icons.multiline_chart,
                       color: Colors.white,
                     ),
                     SizedBox(width: 5.w),
-                    Text(
-                      'Opening Time:',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 16.sp,
-                        color: Colors.white,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Opening Time:',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    const Spacer(),
-                    Text(
-                      Moment(
-                        DateTime.parse(widget.recommendations!.openingTime!),
-                      ).format("MMMM, Do dddd A hh:mm").toString(),
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
-                        color: Colors.white,
+                    Expanded(
+                      child: Text(
+                        Moment(
+                          DateTime.parse(widget.recommendations!.openingTime!),
+                        ).format("MMMM, Do dddd A hh:mm").toString(),
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -351,29 +355,34 @@ class _SingleRecommendationScreenState
                   color: Colors.white,
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Icon(
                       Icons.multiline_chart,
                       color: Colors.white,
                     ),
                     SizedBox(width: 5.w),
-                    Text(
-                      'Expird Time:',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 16.sp,
-                        color: Colors.white,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Expird Time:',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    const Spacer(),
-                    Text(
-                      Moment(
-                        DateTime.parse(widget.recommendations!.expireTime!),
-                      ).format("MMMM, Do dddd A hh:mm").toString(),
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
-                        color: Colors.white,
+                    Expanded(
+                      child: Text(
+                        Moment(
+                          DateTime.parse(widget.recommendations!.expireTime!),
+                        ).format("MMMM, Do dddd A hh:mm").toString(),
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -430,7 +439,7 @@ class _SingleRecommendationScreenState
                         Moment(
                           DateTime.parse(widget.recommendations!.lastUpdate!),
                         ).format("MMMM, Do dddd A hh:mm").toString(),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.end,
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
                           color: Colors.white,
@@ -462,7 +471,7 @@ class _SingleRecommendationScreenState
                     Expanded(
                       child: Text(
                         widget.recommendations!.comment!,
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.end,
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
                           color: Colors.white,

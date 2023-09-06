@@ -1,11 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ewave/api/controllers/articles_controller.dart';
-import 'package:ewave/models/articles.dart';
 import 'package:ewave/screens/bn_screens/blog/single_blog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:moment_dart/moment_dart.dart';
 
 class BlogScreen extends StatefulWidget {
   const BlogScreen({super.key});
@@ -72,9 +71,9 @@ class _BlogScreenState extends State<BlogScreen> {
                                     ),
                                   ),
                                   Text(
-                                    DateFormat.yMd().add_jm().format(
-                                        DateTime.parse(
-                                            snapshot.data![index].createdAt!)),
+                                    Moment(
+                                      DateTime.parse(snapshot.data![index].createdAt!),
+                                    ).format("MMMM, Do").toString(),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.poppins(
                                       fontSize: 14.sp,
@@ -90,18 +89,6 @@ class _BlogScreenState extends State<BlogScreen> {
                               height: 200.h,
                               width: double.infinity,
                               fit: BoxFit.cover,
-                            ),
-                            SizedBox(height: 5.h),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 16.w),
-                              child: Text(
-                                snapshot.data![index].content!,
-                                textAlign: TextAlign.start,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14.sp,
-                                  color: Colors.white,
-                                ),
-                              ),
                             ),
                           ],
                         ),

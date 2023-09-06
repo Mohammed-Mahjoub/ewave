@@ -31,7 +31,7 @@ class _LaunchScreenState extends State<LaunchScreen>  with FbNotifications{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFF1b1b1c),
+      backgroundColor: const Color(0XFF0c1f64),
 
       body: SizedBox(
         height: double.infinity,

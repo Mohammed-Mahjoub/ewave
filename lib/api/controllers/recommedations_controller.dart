@@ -6,8 +6,8 @@ import '../api_setting.dart';
 import 'package:http/http.dart' as http;
 class RecommedationsController{
 
-  Future<List<Recommendations>> getAllRecommedations(String id) async {
-    var url = Uri.parse(ApiSettings.recommendations+id);
+  Future<List<Recommendations>> getAllRecommedations() async {
+    var url = Uri.parse(ApiSettings.recommendations);
     print(url);
     var response = await http.get(url,headers:  {
       "Authorization": 'Bearer ${AppSettingsPreferences.getString(key: PrefKeys.token.name)!}',

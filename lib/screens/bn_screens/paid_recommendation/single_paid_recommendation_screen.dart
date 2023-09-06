@@ -1,3 +1,4 @@
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,11 +35,19 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
       ),
       body: ListView(
         children: [
-          Image.network(
-            widget.recommendations!.image!,
-            height: 200.h,
-            width: double.infinity,
-            fit: BoxFit.cover,
+          InkWell(
+            onTap: (){
+              final imageProvider = Image.network(widget.recommendations!.image!).image;
+              showImageViewer(context, imageProvider, onViewerDismissed: () {
+                print("dismissed");
+              });
+            },
+            child: Image.network(
+              widget.recommendations!.image!,
+              height: 200.h,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
           ),
           SizedBox(height: 10.h),
           Padding(
@@ -47,7 +56,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Action:',
@@ -73,7 +85,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'status:',
@@ -100,26 +115,34 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 ),
                 SizedBox(height: 10.h),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
-                    Text(
-                      'Opening Time:',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 16.sp,
-                        color: Colors.white,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Opening Time:',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    const Spacer(),
-                    Text(
-                      Moment(
-                        DateTime.parse(widget.recommendations!.openingTime!),
-                      ).format("MMMM, Do dddd A hh:mm").toString(),
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
-                        color: Colors.white,
+                    Expanded(
+                      child: Text(
+                        Moment(
+                          DateTime.parse(widget.recommendations!.openingTime!),
+                        ).format("MMMM, Do dddd A hh:mm").toString(),
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -127,7 +150,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Trade Style:',
@@ -153,7 +179,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Risk per Trade:',
@@ -288,7 +317,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Trade Result:',
@@ -322,27 +354,34 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                   color: Colors.white,
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
-                    Text(
-                      'Expird Time:',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 16.sp,
-                        color: Colors.white,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Expird Time:',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    const Spacer(),
-                    Text(
-                      Moment(
-                        DateTime.parse(widget.recommendations!.expireTime!),
-                      ).format("MMMM, Do dddd A hh:mm").toString(),
-
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.poppins(
-                        fontSize: 14.sp,
-                        color: Colors.white,
+                    Expanded(
+                      child: Text(
+                        Moment(
+                          DateTime.parse(widget.recommendations!.expireTime!),
+                        ).format("MMMM, Do dddd A hh:mm").toString(),
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14.sp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -350,7 +389,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       'Historical win rate:',
@@ -375,7 +417,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Expanded(
                       flex: 2,
@@ -393,7 +438,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                         Moment(
                           DateTime.parse(widget.recommendations!.lastUpdate!),
                         ).format("MMMM, Do dddd A hh:mm").toString(),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.end,
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
                           color: Colors.white,
@@ -406,7 +451,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.multiline_chart,color:Colors.white,),
+                    const Icon(
+                      Icons.multiline_chart,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 5.w),
                     Expanded(
                       flex: 2,
@@ -422,7 +470,7 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     Expanded(
                       child: Text(
                         widget.recommendations!.comment!,
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.end,
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
                           color: Colors.white,

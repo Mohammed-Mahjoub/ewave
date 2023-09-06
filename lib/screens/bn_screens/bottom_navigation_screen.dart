@@ -1,7 +1,5 @@
 import 'package:ewave/screens/bn_screens/blog/blog_screen.dart';
 import 'package:ewave/screens/bn_screens/paid_recommendation/markets_paid_screen.dart';
-import 'package:ewave/screens/bn_screens/paid_recommendation/paid_recommendation_screen.dart';
-import 'package:ewave/screens/bn_screens/recommendation/markets_unpaid_screen.dart';
 import 'package:ewave/screens/bn_screens/recommendation/recommendation_screen.dart';
 import 'package:ewave/screens/bn_screens/video/video_screen.dart';
 import 'package:ewave/shared_preferences/shared_preferences.dart';
@@ -9,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../models/bn_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -25,10 +22,10 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     final List<BnScreen> screens = <BnScreen>[
-      const BnScreen(title: 'Market Analysis', widget: MarketsScreen()),
-      const BnScreen(title: 'EWave Forecast', widget: MarketsPaidScreen()),
-      const BnScreen(title: 'Blog', widget: BlogScreen()),
+      const BnScreen(title: 'Market Analysis', widget: RecommendationScreen()),
+      const BnScreen(title: 'EWave VIP', widget: MarketsPaidScreen()),
       const BnScreen(title: 'Trading library', widget: VideoScreen()),
+      const BnScreen(title: 'Blog', widget: BlogScreen()),
     ];
     return Scaffold(
       backgroundColor: const Color(0XFF1b1b1c),
@@ -45,7 +42,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 color: Colors.white,
               ),
             ),
-            screens[_selectedPageIndex].title == 'EWave Forecast'
+            screens[_selectedPageIndex].title == 'EWave VIP'
                 ? const Icon(
                     Icons.star,
                     color: Colors.white,
@@ -121,13 +118,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ),
             BottomNavigationBarItem(
               activeIcon: SvgPicture.asset(
-                'assets/blog.svg',
+                'assets/video.svg',
                 height: 25.h,
                 width: 25.w,
                 color: Colors.white,
               ),
               icon: SvgPicture.asset(
-                'assets/blog.svg',
+                'assets/video.svg',
                 height: 25.h,
                 width: 25.w,
                 color: Colors.white,
@@ -136,13 +133,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ),
             BottomNavigationBarItem(
               activeIcon: SvgPicture.asset(
-                'assets/video.svg',
+                'assets/blog.svg',
                 height: 25.h,
                 width: 25.w,
                 color: Colors.white,
               ),
               icon: SvgPicture.asset(
-                'assets/video.svg',
+                'assets/blog.svg',
                 height: 25.h,
                 width: 25.w,
                 color: Colors.white,
