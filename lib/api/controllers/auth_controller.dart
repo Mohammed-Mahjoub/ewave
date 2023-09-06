@@ -15,6 +15,7 @@ class AuthController {
       'fcm_token': fcmToken,
     });
     print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       print('.........................................');
       var jsonResponse = jsonDecode(response.body);
@@ -38,6 +39,7 @@ class AuthController {
       'passwordConfirm': passwordConfirm,
     });
     print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       print('.........................................');
       return true;

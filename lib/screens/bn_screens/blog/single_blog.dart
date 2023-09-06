@@ -49,21 +49,27 @@ class _SinglePlogState extends State<SinglePlog> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  widget.name,
-                  style: GoogleFonts.poppins(
-                    fontSize: 16.sp,
-                    color: Colors.white,
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Text(
+                    widget.name,
+                    style: GoogleFonts.poppins(
+                      fontSize: 16.sp,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 SizedBox(height: 10.h),
-                Text(
-                  widget.desc,
-                  style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
-                    color: Colors.white,
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Text(
+                    widget.desc,
+                    style: GoogleFonts.poppins(
+                      fontSize: 14.sp,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],

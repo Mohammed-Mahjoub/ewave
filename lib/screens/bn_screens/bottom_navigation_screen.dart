@@ -165,7 +165,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppSettingsPreferences().user().name!,
+                            AppSettingsPreferences().user().email!.substring(0,10)+'...',
                             style: GoogleFonts.poppins(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
