@@ -38,15 +38,14 @@ class AuthController {
       'passwordConfirm': passwordConfirm,
     });
     print(response.statusCode);
-    if (response.statusCode == 200 || response.statusCode == 201 ) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print('.........................................');
       return true;
     }
     return false;
   }
 
-  Future<bool> forgotPassword(
-      {required String email}) async {
+  Future<bool> forgotPassword({required String email}) async {
     var url = Uri.parse(ApiSettings.forgotPassword);
     var response = await http.post(url, body: {
       'email': email,
@@ -55,16 +54,16 @@ class AuthController {
     if (response.statusCode == 200) {
       print('.........................................');
       var jsonResponse = jsonDecode(response.body);
-        print(jsonResponse['message']);
+      print(jsonResponse['message']);
       return true;
     }
     return false;
   }
 
-  Future<bool> verifyCode(
-      {required String email,
-      required String code,
-      }) async {
+  Future<bool> verifyCode({
+    required String email,
+    required String code,
+  }) async {
     print(code);
     var url = Uri.parse(ApiSettings.verifyCode);
     var response = await http.post(url, body: {
@@ -73,20 +72,20 @@ class AuthController {
     });
     print(response.statusCode);
     var jsonResponse = jsonDecode(response.body);
-    print('ccc'+jsonResponse['message']);
+    print('ccc' + jsonResponse['message']);
     if (response.statusCode == 200) {
       print('.........................................');
       var jsonResponse = jsonDecode(response.body);
-        print('ccc'+jsonResponse['message']);
+      print('ccc' + jsonResponse['message']);
       return true;
     }
     return false;
   }
 
-  Future<bool> resetPassword(
-      {required String email,
-      required String newPassword,
-      }) async {
+  Future<bool> resetPassword({
+    required String email,
+    required String newPassword,
+  }) async {
     var url = Uri.parse(ApiSettings.resetPassword);
     var response = await http.post(url, body: {
       'email': email,

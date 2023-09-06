@@ -3,9 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 import '../firebase_options.dart';
-
 
 //typedef BackgroundMessageHandler = Future<void> Function(RemoteMessage message);
 Future<void> firebaseMessagingBackgroundHandler(
@@ -14,7 +12,6 @@ Future<void> firebaseMessagingBackgroundHandler(
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
 
   print('Message: ${remoteMessage.messageId}');
 }
@@ -33,19 +30,18 @@ mixin FbNotifications {
     //Channel
     if (Platform.isAndroid) {
       // if (!kIsWeb) {
-        channel = const AndroidNotificationChannel(
-          'ewave_flutter_channel',
-          'flutter android Notifications Channel',
-          description:
-          'This channel will receive notifications specific to flutter-app',
-          importance: Importance.high,
-          enableLights: true,
-          enableVibration: true,
-          ledColor: Colors.orange,
-          showBadge: true,
-          playSound: true,
-
-        );
+      channel = const AndroidNotificationChannel(
+        'ewave_flutter_channel',
+        'flutter android Notifications Channel',
+        description:
+            'This channel will receive notifications specific to flutter-app',
+        importance: Importance.high,
+        enableLights: true,
+        enableVibration: true,
+        ledColor: Colors.orange,
+        showBadge: true,
+        playSound: true,
+      );
       //Flutter Local Notifications Plugin (FOREGROUND) - ANDROID CHANNEL
       localNotificationsPlugin = FlutterLocalNotificationsPlugin();
       await localNotificationsPlugin
@@ -61,7 +57,6 @@ mixin FbNotifications {
       badge: true,
       sound: true,
     );
-
   }
 
   //iOS Notification Permission
@@ -87,7 +82,6 @@ mixin FbNotifications {
 
   //ANDROID
   void initializeForegroundNotificationForAndroid(BuildContext context) {
-
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Message Received: ${message.messageId}');
       RemoteNotification? notification = message.notification;
@@ -102,12 +96,10 @@ mixin FbNotifications {
               channel.id,
               channel.name,
               channelDescription: channel.description,
-              icon: '',
-
+              icon: 'assets/logo1.jpg',
             ),
           ),
         );
-
       }
     });
   }

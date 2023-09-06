@@ -63,6 +63,7 @@ class AppSettingsPreferences {
     putInt(key: 'isPaid', value: user.isPaid!);
     putInt(key: '__v', value: user.iV!);
     putString(key: 'fcm', value: user.fcmToken!);
+    putString(key: 'expire_payment', value: user.expire_payment ?? '');
 
   }
   static void saveToken({required String token}) {
@@ -79,6 +80,7 @@ class AppSettingsPreferences {
     user.isPaid = getInt(key: 'isPaid');
     user.iV = getInt(key: '__v');
     user.fcmToken = getString(key: 'fcm');
+    user.expire_payment = getString(key: 'expire_payment');
      return user;
   }
 

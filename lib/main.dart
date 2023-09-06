@@ -7,7 +7,9 @@ import 'package:ewave/screens/bn_screens/blog/single_blog.dart';
 import 'package:ewave/screens/bn_screens/bottom_navigation_screen.dart';
 import 'package:ewave/screens/bn_screens/drower/pay_screen.dart';
 import 'package:ewave/screens/bn_screens/drower/privacy_policy_screen.dart';
+import 'package:ewave/screens/bn_screens/paid_recommendation/video_pay_screen.dart';
 import 'package:ewave/screens/start_screen/launch_screen.dart';
+import 'package:ewave/screens/start_screen/start_screen.dart';
 import 'package:ewave/shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +59,9 @@ class _MyAppState extends State<MyApp> {
             initialRoute: '/launch_screen',
             routes: {
               '/launch_screen': (context) => const LaunchScreen(),
+              '/start_screen': (context) => const StartScreen(),
               '/register_screen': (context) => const RegisterScreen(),
+              '/paid_video': (context) => const PayVideoScreen(),
               '/login_screen': (context) => const LoginScreen(),
               '/enter_email_screen': (context) => const EnterEmailScreen(),
               '/pay_screen': (context) => const PayScreen(),
