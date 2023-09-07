@@ -96,7 +96,7 @@ mixin FbNotifications {
               channel.id,
               channel.name,
               channelDescription: channel.description,
-              icon: 'assets/logo1.jpg',
+              icon: 'assets/logo1.png',
             ),
           ),
         );
