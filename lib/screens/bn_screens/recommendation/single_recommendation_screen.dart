@@ -2,18 +2,17 @@ import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import "package:moment_dart/moment_dart.dart";
 import '../../../models/recommendations.dart';
 
 class SingleRecommendationScreen extends StatefulWidget {
-  Recommendations? recommendations;
+  final Recommendations? recommendations;
 
   @override
   State<SingleRecommendationScreen> createState() =>
       _SingleRecommendationScreenState();
 
-  SingleRecommendationScreen(this.recommendations, {super.key});
+  const SingleRecommendationScreen(this.recommendations, {super.key});
 }
 
 class _SingleRecommendationScreenState

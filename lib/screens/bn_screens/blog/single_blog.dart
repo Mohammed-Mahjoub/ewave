@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SinglePlog extends StatefulWidget {
+class SingleBlog extends StatefulWidget {
   final String name;
   final String date;
   final String image;
   final String desc;
 
-  const SinglePlog({
+  const SingleBlog({
     required this.name,
     required this.date,
     required this.image,
@@ -17,10 +17,10 @@ class SinglePlog extends StatefulWidget {
   });
 
   @override
-  State<SinglePlog> createState() => _SinglePlogState();
+  State<SingleBlog> createState() => _SingleBlogState();
 }
 
-class _SinglePlogState extends State<SinglePlog> {
+class _SingleBlogState extends State<SingleBlog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

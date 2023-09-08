@@ -1,9 +1,6 @@
-import 'package:ewave/screens/auth/enter_code_screen.dart';
 import 'package:ewave/screens/auth/enter_email_screen.dart';
-import 'package:ewave/screens/auth/forget_password_screen.dart';
 import 'package:ewave/screens/auth/login_screen.dart';
 import 'package:ewave/screens/auth/register_screen.dart';
-import 'package:ewave/screens/bn_screens/blog/single_blog.dart';
 import 'package:ewave/screens/bn_screens/bottom_navigation_screen.dart';
 import 'package:ewave/screens/bn_screens/drower/pay_screen.dart';
 import 'package:ewave/screens/bn_screens/drower/privacy_policy_screen.dart';
@@ -23,7 +20,9 @@ import 'models/Noti.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppSettingsPreferences.init();
-  Noti.initialize(FlutterLocalNotificationsPlugin(),);
+  Noti.initialize(
+    FlutterLocalNotificationsPlugin(),
+  );
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -65,8 +64,6 @@ class _MyAppState extends State<MyApp> {
               '/login_screen': (context) => const LoginScreen(),
               '/enter_email_screen': (context) => const EnterEmailScreen(),
               '/pay_screen': (context) => const PayScreen(),
-              // '/enter_code_screen': (context) => const EnterCodeScreen(),
-              // '/forget_password_screen': (context) => const ForgetPasswordScreen(),
               '/bn_screen': (context) => const BottomNavigationScreen(),
               '/privacy_policy_screen': (context) => const PrivacyPolicy(),
             });

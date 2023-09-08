@@ -1,18 +1,15 @@
-import 'package:ewave/screens/auth/login_screen.dart';
 import 'package:ewave/util/helpers.dart';
 import 'package:ewave/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../api/controllers/auth_controller.dart';
 import '../../widgets/app_text_field.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
-  String? email;
+  final String? email;
 
-
-  ForgetPasswordScreen(this.email, {super.key});
+  const ForgetPasswordScreen(this.email, {super.key});
 
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
@@ -26,7 +23,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   void initState() {
     super.initState();
     _passwordEditingController = TextEditingController();
-
   }
 
   @override
@@ -82,26 +78,30 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           AppButton(
             text: 'Reset Password',
             onPress: () async {
-              if(isFullData()){
-                bool isSendCode = await AuthController().resetPassword(email: widget.email!,newPassword:_passwordEditingController.text );
+              if (isFullData()) {
+                bool isSendCode = await AuthController().resetPassword(
+                    email: widget.email!,
+                    newPassword: _passwordEditingController.text);
 
                 if (context.mounted) {
-                  if(isSendCode){
-                    Navigator.pushNamedAndRemoveUntil(context, '/login_screen', (route) => true);
-                  }else{
+                  if (isSendCode) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/login_screen', (route) => true);
+                  } else {
                     context.showSnackBar(message: 'wrong', error: true);
                   }
                 }
-              }else{
-                context.showSnackBar(message: 'Enter the required data', error: true);
+              } else {
+                context.showSnackBar(
+                    message: 'Enter the required data', error: true);
               }
-
             },
           ),
         ],
       ),
     );
   }
+
   bool isFullData() {
     if (_passwordEditingController.text.isNotEmpty) {
       return true;

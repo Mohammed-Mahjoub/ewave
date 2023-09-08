@@ -5,7 +5,6 @@ import 'package:ewave/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../widgets/app_text_field.dart';
 
 class EnterEmailScreen extends StatefulWidget {
@@ -67,29 +66,33 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
           AppButton(
             text: 'Next',
             onPress: () async {
-              if(isFullData()){
-                bool isSendCode = await AuthController().forgotPassword(email: _emailEditingController.text);
+              if (isFullData()) {
+                bool isSendCode = await AuthController()
+                    .forgotPassword(email: _emailEditingController.text);
 
                 if (context.mounted) {
-                  if(isSendCode){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return EnterCodeScreen(_emailEditingController.text);
-                    },));
-                  }else{
-                    context.showSnackBar(message: 'email is wrong', error: true);
+                  if (isSendCode) {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return EnterCodeScreen(_emailEditingController.text);
+                      },
+                    ));
+                  } else {
+                    context.showSnackBar(
+                        message: 'email is wrong', error: true);
                   }
                 }
-              }else{
-                context.showSnackBar(message: 'Enter the required data', error: true);
+              } else {
+                context.showSnackBar(
+                    message: 'Enter the required data', error: true);
               }
-
-
             },
           ),
         ],
       ),
     );
   }
+
   bool isFullData() {
     if (_emailEditingController.text.isNotEmpty) {
       return true;

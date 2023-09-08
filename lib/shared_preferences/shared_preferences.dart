@@ -1,6 +1,16 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user.dart';
-enum PrefKeys {language,email,confCode,currency,loggedIn,token,onBoarding}
+
+enum PrefKeys {
+  language,
+  email,
+  confCode,
+  currency,
+  loggedIn,
+  token,
+  onBoarding
+}
+
 class AppSettingsPreferences {
   static SharedPreferences? sharedPreferences;
 
@@ -47,7 +57,7 @@ class AppSettingsPreferences {
     return sharedPreferences!.getString(key);
   }
 
-  static  Future<bool> putInt({required String key,required int value})async {
+  static Future<bool> putInt({required String key, required int value}) async {
     return await sharedPreferences!.setInt(key, value);
   }
 
@@ -64,15 +74,14 @@ class AppSettingsPreferences {
     putInt(key: '__v', value: user.iV!);
     putString(key: 'fcm', value: user.fcmToken!);
     putString(key: 'expire_payment', value: user.expire_payment ?? '');
-
   }
+
   static void saveToken({required String token}) {
     putString(key: 'token', value: token);
-
   }
 
-    User user() {
-    User user =User();
+  User user() {
+    User user = User();
     user.sId = getString(key: '_id');
     user.email = getString(key: 'email');
     user.name = getString(key: 'name');
@@ -81,7 +90,6 @@ class AppSettingsPreferences {
     user.iV = getInt(key: '__v');
     user.fcmToken = getString(key: 'fcm');
     user.expire_payment = getString(key: 'expire_payment');
-     return user;
+    return user;
   }
-
 }

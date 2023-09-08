@@ -3,7 +3,6 @@ import 'package:ewave/screens/bn_screens/blog/single_blog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:moment_dart/moment_dart.dart';
 
 class BlogScreen extends StatefulWidget {
@@ -40,7 +39,7 @@ class _BlogScreenState extends State<BlogScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SinglePlog(
+                            builder: (context) => SingleBlog(
                                 name: snapshot.data![index].title!,
                                 date: snapshot.data![index].createdAt!,
                                 image: snapshot.data![index].image!,

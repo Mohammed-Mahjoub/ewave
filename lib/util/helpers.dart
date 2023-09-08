@@ -7,7 +7,8 @@ extension ContextHelper on BuildContext {
       SnackBar(
         content: Text(
           message,
-          style: GoogleFonts.cairo(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),
+          style: GoogleFonts.cairo(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: error ? Colors.red.shade700 : Colors.green.shade300,
         behavior: SnackBarBehavior.floating,
@@ -19,6 +20,4 @@ extension ContextHelper on BuildContext {
       ),
     );
   }
-
-
 }

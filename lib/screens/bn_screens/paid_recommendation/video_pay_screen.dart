@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../api/controllers/pay_controller.dart';
 import '../../../widgets/app_button.dart';
 
@@ -54,7 +53,8 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: 10.h,left: 10.w,right: 10.w),
+                    padding:
+                        EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.r),
@@ -82,12 +82,13 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => DisplayPayVideoScreen(
-                                          post: Post(
-                                            snapshot.data![index].title!,
-                                            snapshot.data![index].url!,
-                                            snapshot.data![index].description!,
-                                          )),
+                                      builder: (context) =>
+                                          DisplayPayVideoScreen(
+                                              post: Post(
+                                        snapshot.data![index].title!,
+                                        snapshot.data![index].url!,
+                                        snapshot.data![index].description!,
+                                      )),
                                     ));
                               },
                               child: Container(
@@ -136,7 +137,7 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
                 },
               ),
             );
-          }else if(snapshot.data == null){
+          } else if (snapshot.data == null) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -208,7 +209,7 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
                       text: 'Pay',
                       fontSize: 18.sp,
                       onPress: () async {
-                        if(val==true){
+                        if (val == true) {
                           String? response = await PayController().pay();
                           if (response != null) {
                             Navigator.pop(context);
@@ -216,12 +217,15 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
                               Uri.parse(response),
                               mode: LaunchMode.externalApplication,
                             );
-                            Navigator.pushNamedAndRemoveUntil(context, '/login_screen', (route) => true);
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, '/login_screen', (route) => true);
                           } else {
-                            context.showSnackBar(message: 'Something went wrong', error: true);
+                            context.showSnackBar(
+                                message: 'Something went wrong', error: true);
                           }
-                        }else{
-                          context.showSnackBar(message: 'Enter on check box', error: true);
+                        } else {
+                          context.showSnackBar(
+                              message: 'Enter on check box', error: true);
                         }
                       },
                     ),
@@ -229,9 +233,7 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
                 ],
               ),
             );
-
-          }
-          else {
+          } else {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

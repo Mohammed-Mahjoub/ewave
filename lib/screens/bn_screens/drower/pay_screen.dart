@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../widgets/app_button.dart';
-import '../../../widgets/app_text_field.dart';
 
 class PayScreen extends StatefulWidget {
   const PayScreen({super.key});
@@ -115,7 +113,7 @@ class _PayScreenState extends State<PayScreen> {
             text: 'Pay',
             fontSize: 18.sp,
             onPress: () async {
-              if(val==true){
+              if (val == true) {
                 String? response = await PayController().pay();
                 if (response != null) {
                   Navigator.pop(context);
@@ -123,12 +121,15 @@ class _PayScreenState extends State<PayScreen> {
                     Uri.parse(response),
                     mode: LaunchMode.externalApplication,
                   );
-                  Navigator.pushNamedAndRemoveUntil(context, '/login_screen', (route) => true);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/login_screen', (route) => true);
                 } else {
-                  context.showSnackBar(message: 'Something went wrong', error: true);
+                  context.showSnackBar(
+                      message: 'Something went wrong', error: true);
                 }
-              }else{
-                context.showSnackBar(message: 'Enter on check box', error: true);
+              } else {
+                context.showSnackBar(
+                    message: 'Enter on check box', error: true);
               }
             },
           ),

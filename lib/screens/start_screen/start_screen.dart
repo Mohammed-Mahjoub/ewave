@@ -1,7 +1,5 @@
-import 'package:ewave/shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../fb/fb_notifications.dart';
 import '../../widgets/app_button.dart';
 

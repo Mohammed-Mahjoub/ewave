@@ -1,9 +1,7 @@
 import 'package:ewave/screens/bn_screens/paid_recommendation/paid_recommendation_screen.dart';
-import 'package:ewave/screens/bn_screens/recommendation/recommendation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../api/controllers/categories_controller.dart';
 
 class MarketsPaidScreen extends StatefulWidget {
