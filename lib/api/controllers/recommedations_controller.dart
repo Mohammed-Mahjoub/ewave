@@ -13,6 +13,8 @@ class RecommedationsController {
           'Bearer ${AppSettingsPreferences.getString(key: PrefKeys.token.name)!}',
     });
     print('xxx' + response.statusCode.toString());
+    print(response.body);
+
     if (response.statusCode == 200) {
       print(response.body);
       var jsonResponse = jsonDecode(response.body);

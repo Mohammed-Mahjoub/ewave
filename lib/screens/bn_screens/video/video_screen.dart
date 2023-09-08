@@ -65,7 +65,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                         post: Post(
                                       snapshot.data![index].title!,
                                       snapshot.data![index].url!,
-                                      snapshot.data![index].description!,
+                                      snapshot.data![index].description ?? '',
                                     )),
                                   ));
                             },

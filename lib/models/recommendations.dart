@@ -3,24 +3,24 @@ class Recommendations {
   String? name;
   String? action;
   String? image;
-  int? status;
+  num? status;
   String? openingTime;
-  int? tradeStyle;
-  int? riskPerTrade;
-  int? firstTargetPrice;
-  int? secondTargetPrice;
-  int? stopLoss;
-  int? tradeResult;
-  String? expireTime;
+  num? tradeStyle;
+  num? riskPerTrade;
+  num? firstTargetPrice;
+  num? secondTargetPrice;
   num? openPrice;
-  int? winRate;
+  num? stopLoss;
+  num? tradeResult;
+  String? expireTime;
+  num? winRate;
   String? lastUpdate;
   String? comment;
-  int? isPaid;
+  num? isPaid;
   String? category;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
 
   Recommendations(
       {this.sId,
@@ -33,6 +33,7 @@ class Recommendations {
         this.riskPerTrade,
         this.firstTargetPrice,
         this.secondTargetPrice,
+        this.openPrice,
         this.stopLoss,
         this.tradeResult,
         this.expireTime,
@@ -56,10 +57,10 @@ class Recommendations {
     riskPerTrade = json['risk_per_trade'];
     firstTargetPrice = json['first_target_price'];
     secondTargetPrice = json['second_target_price'];
+    openPrice = json['open_price'];
     stopLoss = json['stop_loss'];
     tradeResult = json['trade_result'];
     expireTime = json['expire_time'];
-    openPrice = json['open_price'];
     winRate = json['win_rate'];
     lastUpdate = json['last_update'];
     comment = json['comment'];
@@ -82,6 +83,7 @@ class Recommendations {
     data['risk_per_trade'] = this.riskPerTrade;
     data['first_target_price'] = this.firstTargetPrice;
     data['second_target_price'] = this.secondTargetPrice;
+    data['open_price'] = this.openPrice;
     data['stop_loss'] = this.stopLoss;
     data['trade_result'] = this.tradeResult;
     data['expire_time'] = this.expireTime;
