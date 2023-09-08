@@ -36,7 +36,7 @@ class _SingleRecommendationScreenState
       ),
       body: ListView(
         children: [
-          InkWell(
+          widget.recommendations!.image != null ?InkWell(
             onTap: (){
               final imageProvider = Image.network(widget.recommendations!.image!).image;
               showImageViewer(context, imageProvider, onViewerDismissed: () {
@@ -49,7 +49,7 @@ class _SingleRecommendationScreenState
               width: double.infinity,
               fit: BoxFit.cover,
             ),
-          ),
+          ):Image.asset('assets/logo1.png'),
           SizedBox(height: 10.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -375,9 +375,10 @@ class _SingleRecommendationScreenState
                     ),
                     Expanded(
                       child: Text(
-                        Moment(
-                          DateTime.parse(widget.recommendations!.expireTime!),
-                        ).format("MMMM, Do dddd A hh:mm").toString(),
+                        widget.recommendations!.expireTime!,
+                        // Moment(
+                        //   DateTime.parse(widget.recommendations!.expireTime!),
+                        // ).format("MMMM, Do dddd A hh:mm").toString(),
                         textAlign: TextAlign.end,
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,

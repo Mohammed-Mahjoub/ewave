@@ -374,9 +374,10 @@ class _SinglePaidRecommendationScreenState extends State<SinglePaidRecommendatio
                     ),
                     Expanded(
                       child: Text(
-                        Moment(
-                          DateTime.parse(widget.recommendations!.expireTime!),
-                        ).format("MMMM, Do dddd A hh:mm").toString(),
+                        widget.recommendations!.expireTime!,
+                        // Moment(
+                        //   DateTime.parse(widget.recommendations!.expireTime!),
+                        // ).format("MMMM, Do dddd A hh:mm").toString(),
                         textAlign: TextAlign.end,
                         style: GoogleFonts.poppins(
                           fontSize: 14.sp,
