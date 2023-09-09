@@ -3,6 +3,7 @@ class Videos {
   String? url;
   String? title;
   String? status;
+  String? image;
   String? createdAt;
   String? updatedAt;
   int? iV;
@@ -13,6 +14,7 @@ class Videos {
         this.url,
         this.title,
         this.status,
+        this.image,
         this.createdAt,
         this.updatedAt,
         this.iV,
@@ -22,6 +24,7 @@ class Videos {
     sId = json['_id'];
     url = json['url'];
     title = json['title'];
+    image = json['image'];
     status = json['status'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -34,6 +37,7 @@ class Videos {
     data['_id'] = this.sId;
     data['url'] = this.url;
     data['title'] = this.title;
+    data['image'] = this.image;
     data['status'] = this.status;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;

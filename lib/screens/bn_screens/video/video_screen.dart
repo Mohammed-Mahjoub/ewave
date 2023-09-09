@@ -74,11 +74,11 @@ class _VideoScreenState extends State<VideoScreen> {
                               height: 200.h,
                               child: Stack(
                                 children: [
-                                  Center(
-                                    child: Image.asset(
-                                      'assets/logo.png',
-                                      height: 150.h,
-                                    ),
+                                  Image.network(
+                                    snapshot.data![index].image?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrTFrhr_-pYR74jUgOy7IerAoHAX3zPIZZcg&usqp=CAU',
+                                    height: 200.h,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
                                   ),
                                   Positioned(
                                     top: 0,

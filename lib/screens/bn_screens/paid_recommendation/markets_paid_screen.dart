@@ -37,7 +37,7 @@ class _MarketsPaidScreenState extends State<MarketsPaidScreen> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Colors.black,
                 borderRadius: BorderRadius.circular(10.r),
               ),
               height: 200.h,
@@ -45,7 +45,7 @@ class _MarketsPaidScreenState extends State<MarketsPaidScreen> {
                 children: [
                   Center(
                     child: Image.asset(
-                      'assets/logo.png',
+                      'assets/logo1.png',
                       height: 150.h,
                     ),
                   ),
