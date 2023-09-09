@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import '../../models/login.dart';
+import '../../shared_preferences/shared_preferences.dart';
 import '../api_setting.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController {
-  Future<LogIn?>? logIn(
+  Future<String?>? logIn(
       {required String email, required String password}) async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
     var url = Uri.parse(ApiSettings.logIn);
@@ -20,12 +21,16 @@ class AuthController {
       print('.........................................');
       var jsonResponse = jsonDecode(response.body);
       LogIn logInUser = LogIn.fromJson(jsonResponse);
-      return logInUser;
+      AppSettingsPreferences.saveUser(
+          user: logInUser.data!.user!);
+      AppSettingsPreferences.saveToken(token: logInUser.token!);
+      return 'done';
     }
-    return null;
+    var jsonResponse = jsonDecode(response.body);
+    return jsonResponse['message'];
   }
 
-  Future<bool> register({
+  Future<String> register({
     required String email,
     required String mobileNumber,
     required String password,
@@ -42,9 +47,10 @@ class AuthController {
     print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       print('.........................................');
-      return true;
+      return 'true';
     }
-    return false;
+    var jsonResponse = jsonDecode(response.body);
+    return jsonResponse['message'];
   }
 
   Future<bool> forgotPassword({required String email}) async {

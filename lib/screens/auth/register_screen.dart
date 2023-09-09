@@ -160,18 +160,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
             text: 'Sign up',
             onPress: () async {
               if (isFullData()) {
-                bool register = await AuthController().register(
+                String register = await AuthController().register(
                   email: _emailEditingController.text,
                   mobileNumber: _mobileEditingController.text,
                   password: _passwordEditingController.text,
                   passwordConfirm: _confirmPasswordEditingController.text,
                 );
                 if (context.mounted) {
-                  if (register) {
+                  if (register=='true') {
                     Navigator.pushReplacementNamed(context, '/login_screen');
                   } else {
                     context.showSnackBar(
-                        message: 'Something went wrong', error: true);
+                        message: register, error: true);
                   }
                 }
               } else {
@@ -193,7 +193,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, '/login_screen');
                 },
                 child: Text(
                   ' Sign in',

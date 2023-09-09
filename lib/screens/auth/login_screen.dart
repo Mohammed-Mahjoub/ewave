@@ -1,6 +1,4 @@
 import 'package:ewave/api/controllers/auth_controller.dart';
-import 'package:ewave/models/login.dart';
-import 'package:ewave/shared_preferences/shared_preferences.dart';
 import 'package:ewave/util/helpers.dart';
 import 'package:ewave/widgets/app_button.dart';
 import 'package:flutter/material.dart';
@@ -87,18 +85,15 @@ class _LoginScreenState extends State<LoginScreen> {
             text: 'Log in',
             onPress: () async {
               if (isFullData()) {
-                LogIn? logInUser = await AuthController().logIn(
+                String? logInUser = await AuthController().logIn(
                     email: _emailEditingController.text,
                     password: _passwordEditingController.text);
                 if (context.mounted) {
-                  if (logInUser != null) {
-                    AppSettingsPreferences.saveUser(
-                        user: logInUser.data!.user!);
-                    AppSettingsPreferences.saveToken(token: logInUser.token!);
+                  if (logInUser == 'done') {
                     Navigator.pushReplacementNamed(context, '/bn_screen');
                   } else {
                     context.showSnackBar(
-                        message: 'The password or email is wrong', error: true);
+                        message: logInUser != null ? logInUser :'The password or email is wrong', error: true);
                   }
                 }
               } else {
@@ -133,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/register_screen');
+                  Navigator.pushReplacementNamed(context, '/register_screen');
                 },
                 child: Text(
                   ' Sign Up',
