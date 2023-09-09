@@ -36,7 +36,7 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
         ),
       ),
       body: FutureBuilder(
-        future: VideosController().getAllVideos(),
+        future: VideosController().getAllPaidVideos(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -87,7 +87,6 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
                                               post: Post(
                                         snapshot.data![index].title!,
                                         snapshot.data![index].url!,
-                                        snapshot.data![index].description!,
                                       )),
                                     ));
                               },

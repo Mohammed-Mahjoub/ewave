@@ -33,7 +33,8 @@ class _VideoScreenState extends State<VideoScreen> {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.only(bottom: 10.h,left: 10.w,right: 10.w),
+                  padding:
+                      EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -65,7 +66,6 @@ class _VideoScreenState extends State<VideoScreen> {
                                         post: Post(
                                       snapshot.data![index].title!,
                                       snapshot.data![index].url!,
-                                      snapshot.data![index].description ?? '',
                                     )),
                                   ));
                             },

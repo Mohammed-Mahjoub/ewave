@@ -1,7 +1,9 @@
 class Post {
   String? title;
-  String? link ;
-  String? description;
+  String? link;
 
-  Post(this.title, this.link, this.description);
+  Post(
+    this.title,
+    this.link,
+  );
 }
