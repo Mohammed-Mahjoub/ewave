@@ -154,15 +154,31 @@ class _PaidRecommendationScreenState extends State<PaidRecommendationScreen>
                                     ],
                                   ),
                                 ),
-                                Text(
-                                  snapshot.data![index].action!,
-                                  textAlign: TextAlign.start,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 30.sp,
-                                    color: snapshot.data![index].action! == 'Sell'
-                                        ? Colors.red
-                                        : Colors.green,
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      snapshot.data![index].action!,
+                                      textAlign: TextAlign.start,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 30.sp,
+                                        color: snapshot.data![index].action! ==
+                                            'Sell'
+                                            ? Colors.red
+                                            : Colors.green,
+                                      ),
+                                    ),
+                                    Text(
+                                      snapshot.data![index].tradeStyle! == 0
+                                          ? 'Swing Trade'
+                                          : 'Interday',
+                                      textAlign: TextAlign.start,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 14.sp,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

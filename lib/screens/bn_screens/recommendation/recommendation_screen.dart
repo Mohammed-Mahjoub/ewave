@@ -13,7 +13,8 @@ class RecommendationScreen extends StatefulWidget {
   const RecommendationScreen({super.key});
 }
 
-class _RecommendationScreenState extends State<RecommendationScreen> with TickerProviderStateMixin{
+class _RecommendationScreenState extends State<RecommendationScreen>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -38,15 +39,15 @@ class _RecommendationScreenState extends State<RecommendationScreen> with Ticker
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SingleRecommendationScreen(
-                              snapshot.data![index]),
+                          builder: (context) =>
+                              SingleRecommendationScreen(snapshot.data![index]),
                         ));
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5.w),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 5.h, horizontal: 5.w),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
                       child: Column(
                         children: [
                           Row(
@@ -86,60 +87,89 @@ class _RecommendationScreenState extends State<RecommendationScreen> with Ticker
                                         Text(
                                           snapshot.data![index].status! == 0
                                               ? 'pending'
-                                              : snapshot.data![index].status! == 1
-                                              ? 'active'
-                                              : 'expired',
+                                              : snapshot.data![index].status! ==
+                                                      1
+                                                  ? 'active'
+                                                  : 'expired',
                                           textAlign: TextAlign.start,
                                           style: GoogleFonts.poppins(
                                             fontSize: 18.sp,
                                             color: Colors.white,
                                           ),
                                         ),
-                                        snapshot.data![index].status! == 1 ? SpinKitThreeBounce(
-                                          color: Colors.green,
-                                          size: 10,
-                                          controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200)),
-                                        ):SizedBox(height: 0.h),
+                                        snapshot.data![index].status! == 1
+                                            ? SpinKitThreeBounce(
+                                                color: Colors.green,
+                                                size: 10,
+                                                controller: AnimationController(
+                                                    vsync: this,
+                                                    duration: const Duration(
+                                                        milliseconds: 1200)),
+                                              )
+                                            : SizedBox(height: 0.h),
                                       ],
                                     ),
                                     Text(
                                       snapshot.data![index].tradeResult! == 0
                                           ? 'waiting'
                                           : snapshot.data![index]
-                                          .tradeResult! ==
-                                          1
-                                          ? 'Break even'
-                                          : snapshot.data![index]
-                                          .tradeResult! ==
-                                          2
-                                          ? 'Target 1'
-                                          : snapshot.data![index]
-                                          .tradeResult! ==
-                                          3
-                                          ? 'Target 2'
-                                          : 'Stop loss',
+                                                      .tradeResult! ==
+                                                  1
+                                              ? 'Break even'
+                                              : snapshot.data![index]
+                                                          .tradeResult! ==
+                                                      2
+                                                  ? 'Target 1'
+                                                  : snapshot.data![index]
+                                                              .tradeResult! ==
+                                                          3
+                                                      ? 'Target 2'
+                                                      : 'Stop loss',
                                       textAlign: TextAlign.start,
                                       style: GoogleFonts.poppins(
                                         fontSize: 14.sp,
-                                        color: snapshot.data![index].tradeResult! == 4 ? Colors.red:Colors.white,
+                                        color: snapshot.data![index]
+                                                    .tradeResult! ==
+                                                4
+                                            ? Colors.red
+                                            : Colors.white,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              Text(
-                                snapshot.data![index].action!,
-                                textAlign: TextAlign.start,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 30.sp,
-                                  color: snapshot.data![index].action! == 'Sell'
-                                      ? Colors.red
-                                      : Colors.green,
-                                ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    snapshot.data![index].action!,
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 30.sp,
+                                      color: snapshot.data![index].action! ==
+                                              'Sell'
+                                          ? Colors.red
+                                          : Colors.green,
+                                    ),
+                                  ),
+                                  Text(
+                                    snapshot.data![index].tradeStyle! == 0
+                                        ? 'Swing Trade'
+                                        : 'Interday',
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14.sp,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          const Divider(thickness: 1,color: Colors.white,),
+                          const Divider(
+                            thickness: 1,
+                            color: Colors.white,
+                          ),
                         ],
                       ),
                     ),
