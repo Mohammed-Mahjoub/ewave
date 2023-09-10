@@ -26,6 +26,7 @@ class _DisplayVideoScreenState extends State<DisplayVideoScreen> {
           mute: false,
           loop: false,
           autoPlay: true,
+          forceHD: true,
         ));
   }
 

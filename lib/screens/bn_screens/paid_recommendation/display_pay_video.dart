@@ -26,6 +26,7 @@ class _DisplayPayVideoScreenState extends State<DisplayPayVideoScreen> {
           mute: false,
           loop: false,
           autoPlay: true,
+          forceHD: true,
         ));
   }
 
