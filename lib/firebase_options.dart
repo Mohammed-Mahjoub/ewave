@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCdk3cnLV7cynNB1bnCGAv5JZrdPk0g1lg',
-    appId: '1:611959916504:android:1a5695a67129e00245d4ad',
+    appId: '1:611959916504:android:1a84730cf4d9dd2445d4ad',
     messagingSenderId: '611959916504',
     projectId: 'ewave-ecb77',
     storageBucket: 'ewave-ecb77.appspot.com',
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCXMf2joK6z8vbfqr18q-EjAWKhC4-rU_A',
-    appId: '1:611959916504:ios:30ced21bc088a88d45d4ad',
+    appId: '1:611959916504:ios:99f4c4ade95d539d45d4ad',
     messagingSenderId: '611959916504',
     projectId: 'ewave-ecb77',
     storageBucket: 'ewave-ecb77.appspot.com',
