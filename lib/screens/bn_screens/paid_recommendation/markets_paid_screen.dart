@@ -45,7 +45,7 @@ class _MarketsPaidScreenState extends State<MarketsPaidScreen> {
                 children: [
                   Center(
                     child: Image.asset(
-                      'assets/logo1.png',
+                      'assets/logo2.png',
                       height: 150.h,
                     ),
                   ),

@@ -19,6 +19,8 @@ class AuthController {
     print(response.body);
     if (response.statusCode == 200) {
       print('.........................................');
+      print('fcm ---- $fcmToken');
+
       var jsonResponse = jsonDecode(response.body);
       LogIn logInUser = LogIn.fromJson(jsonResponse);
       AppSettingsPreferences.saveUser(
