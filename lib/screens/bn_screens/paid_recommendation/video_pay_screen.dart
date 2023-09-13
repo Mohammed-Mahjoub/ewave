@@ -17,7 +17,7 @@ class PayVideoScreen extends StatefulWidget {
 }
 
 class _PayVideoScreenState extends State<PayVideoScreen> {
-  bool val = true;
+  bool val = false;
 
   @override
   Widget build(BuildContext context) {

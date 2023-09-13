@@ -23,7 +23,7 @@ class PaidRecommendationScreen extends StatefulWidget {
 
 class _PaidRecommendationScreenState extends State<PaidRecommendationScreen>
     with TickerProviderStateMixin {
-  bool val = true;
+  bool val = false;
 
   @override
   Widget build(BuildContext context) {

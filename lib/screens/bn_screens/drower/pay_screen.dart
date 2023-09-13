@@ -15,7 +15,7 @@ class PayScreen extends StatefulWidget {
 
 class _PayScreenState extends State<PayScreen> {
   late TextEditingController _emailEditingController;
-  bool val = true;
+  bool val = false;
 
   @override
   void initState() {
