@@ -82,6 +82,7 @@ class _PayScreenState extends State<PayScreen> {
                       val = !val;
                     });
                   },
+                  side: BorderSide(color: Colors.white),
                 ),
                 Text(
                   'Accept privacy policy',

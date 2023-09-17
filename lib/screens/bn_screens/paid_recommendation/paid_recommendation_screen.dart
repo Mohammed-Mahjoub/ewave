@@ -244,6 +244,7 @@ class _PaidRecommendationScreenState extends State<PaidRecommendationScreen>
                               val = !val;
                             });
                           },
+                          side: const BorderSide(color: Colors.white),
                         ),
                         Text(
                           'Accept privacy policy',

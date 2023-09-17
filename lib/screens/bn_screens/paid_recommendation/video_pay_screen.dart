@@ -189,6 +189,7 @@ class _PayVideoScreenState extends State<PayVideoScreen> {
                               val = !val;
                             });
                           },
+                          side: const BorderSide(color: Colors.white),
                         ),
                         Text(
                           'Accept privacy policy',

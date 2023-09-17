@@ -40,7 +40,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
-  bool val = true;
+  bool val = false;
 
   void getSpecialty() {}
 
@@ -129,6 +129,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       val = !val;
                     });
                   },
+                    side: const BorderSide(color: Colors.white),
+
                 ),
                 Text(
                   'Accept privacy policy',
@@ -162,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               if (isFullData()) {
                 String register = await AuthController().register(
                   email: _emailEditingController.text,
-                  mobileNumber: _mobileEditingController.text,
+                  mobileNumber: _mobileEditingController.text.isEmpty ? "1" :_mobileEditingController.text,
                   password: _passwordEditingController.text,
                   passwordConfirm: _confirmPasswordEditingController.text,
                 );
@@ -210,7 +212,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   bool isFullData() {
     if (_emailEditingController.text.isNotEmpty &&
-        _mobileEditingController.text.isNotEmpty &&
         _passwordEditingController.text.isNotEmpty &&
         _confirmPasswordEditingController.text.isNotEmpty &&
         val != false) {
