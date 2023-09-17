@@ -78,11 +78,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
             textEditingController: _emailEditingController,
           ),
           SizedBox(height: 20.h),
-          AppTextField(
-            hintText: ' Mobile Number',
-            keyboardType: TextInputType.phone,
-            textEditingController: _mobileEditingController,
-          ),
+          // AppTextField(
+          //   hintText: ' Mobile Number',
+          //   keyboardType: TextInputType.phone,
+          //   textEditingController: _mobileEditingController,
+          // ),
           SizedBox(height: 20.h),
           AppTextField(
             hintText: 'Enter Your Password',
@@ -164,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               if (isFullData()) {
                 String register = await AuthController().register(
                   email: _emailEditingController.text,
-                  mobileNumber: _mobileEditingController.text.isEmpty ? "1" :_mobileEditingController.text,
+                  mobileNumber: "1",
                   password: _passwordEditingController.text,
                   passwordConfirm: _confirmPasswordEditingController.text,
                 );

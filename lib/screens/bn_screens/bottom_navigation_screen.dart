@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moment_dart/moment_dart.dart';
+import '../../api/controllers/auth_controller.dart';
 import '../../models/bn_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             Text(
               screens[_selectedPageIndex].title,
               style: GoogleFonts.poppins(
-                fontSize: 18.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
@@ -252,6 +253,35 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                         ),
                       ),
 
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: InkWell(
+                  onTap: () async {
+                    print(AppSettingsPreferences.getString(key: '_id'));
+                    await AuthController().delete(id: AppSettingsPreferences.getString(key: '_id')!);
+                    Navigator.pushReplacementNamed(context, '/login_screen');
+                    AppSettingsPreferences.putString(
+                        key: PrefKeys.token.name, value: '');
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.delete_outline,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 10.w),
+                      Text(
+                        'Delete My Account',
+                        style: GoogleFonts.poppins(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
                   ),
                 ),

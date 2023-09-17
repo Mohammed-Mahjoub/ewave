@@ -109,4 +109,19 @@ class AuthController {
     }
     return false;
   }
+  Future<bool> delete({
+    required String id,
+  }) async {
+    var url = Uri.parse(ApiSettings.delete+id);
+    var response = await http.delete(url, headers: {
+      "Authorization":
+      'Bearer ${AppSettingsPreferences.getString(key: PrefKeys.token.name)!}',
+    });
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      print('.........................................');
+      return true;
+    }
+    return false;
+  }
 }

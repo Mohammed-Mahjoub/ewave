@@ -2,6 +2,7 @@ class ApiSettings {
   static const _baseUrl = 'http://ewaveonline.com:4040/api/v1/';
   static const logIn = '${_baseUrl}users/login';
   static const register = '${_baseUrl}users/register';
+  static const delete = '${_baseUrl}users/';
   static const articles = '${_baseUrl}articles';
   static const videos = '${_baseUrl}videos/free';
   static const videosPay = '${_baseUrl}videos/paid';
