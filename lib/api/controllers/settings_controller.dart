@@ -5,12 +5,10 @@ import '../api_setting.dart';
 
 class SettingsController {
   Future<String> getSettings() async {
-    print(AppSettingsPreferences().user().sId!);
     var url = Uri.parse(ApiSettings.settings);
-    var response = await http.get(url, headers: {
-      "Authorization":
-          'Bearer ${AppSettingsPreferences.getString(key: PrefKeys.token.name)!}',
-    });
+    print(url);
+    var response = await http.get(url);
+    print(response.body);
     if (response.statusCode == 200) {
       print(response.body);
       var jsonResponse = jsonDecode(response.body);

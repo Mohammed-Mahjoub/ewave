@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../api/controllers/categories_controller.dart';
+import '../../../shared_preferences/shared_preferences.dart';
 
 class MarketsPaidScreen extends StatefulWidget {
   const MarketsPaidScreen({Key? key}) : super(key: key);
@@ -33,7 +34,14 @@ class _MarketsPaidScreenState extends State<MarketsPaidScreen> {
               //         snapshot.data![index].description!,
               //       )),
               //     ));
-              Navigator.pushNamed(context, '/paid_video');
+              if (AppSettingsPreferences.getString(key: PrefKeys.token.name) ==
+                  null ||
+                  AppSettingsPreferences.getString(key: PrefKeys.token.name) ==
+                      '') {
+                Navigator.pushReplacementNamed(context, '/start_screen');
+              } else {
+                Navigator.pushNamed(context, '/paid_video');
+              }
             },
             child: Container(
               decoration: BoxDecoration(
@@ -97,16 +105,26 @@ class _MarketsPaidScreenState extends State<MarketsPaidScreen> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return PaidRecommendationScreen(
-                                  snapshot.data![index].sId!,
-                                  snapshot.data![index].name!);
-                            },
-                          ),
-                        );
+                        if (AppSettingsPreferences.getString(
+                            key: PrefKeys.token.name) ==
+                            null ||
+                            AppSettingsPreferences.getString(
+                                key: PrefKeys.token.name) ==
+                                '') {
+                          Navigator.pushReplacementNamed(
+                              context, '/start_screen');
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PaidRecommendationScreen(
+                                    snapshot.data![index].sId!,
+                                    snapshot.data![index].name!);
+                              },
+                            ),
+                          );
+                        }
                       },
                       child: Container(
                         decoration: BoxDecoration(

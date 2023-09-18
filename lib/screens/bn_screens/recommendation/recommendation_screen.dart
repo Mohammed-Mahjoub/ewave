@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moment_dart/moment_dart.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../../api/controllers/recommedations_controller.dart';
+import '../../../shared_preferences/shared_preferences.dart';
 
 class RecommendationScreen extends StatefulWidget {
   @override
@@ -36,12 +37,21 @@ class _RecommendationScreenState extends State<RecommendationScreen>
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              SingleRecommendationScreen(snapshot.data![index]),
-                        ));
+                    if (AppSettingsPreferences.getString(
+                        key: PrefKeys.token.name) ==
+                        null ||
+                        AppSettingsPreferences.getString(
+                            key: PrefKeys.token.name) ==
+                            '') {
+                      Navigator.pushReplacementNamed(context, '/start_screen');
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SingleRecommendationScreen(
+                                snapshot.data![index]),
+                          ));
+                    }
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5.w),

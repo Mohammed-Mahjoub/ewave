@@ -6,7 +6,7 @@ class ApiSettings {
   static const articles = '${_baseUrl}articles';
   static const videos = '${_baseUrl}videos/free';
   static const videosPay = '${_baseUrl}videos/paid';
-  static const settings = '${_baseUrl}settings/';
+  static const settings = '${_baseUrl}settings';
   static const forgotPassword = '${_baseUrl}users/forgotPassword';
   static const verifyCode = '${_baseUrl}users/verifyCode';
   static const resetPassword = '${_baseUrl}users/resetPassword';
@@ -14,4 +14,5 @@ class ApiSettings {
   static const recommendations = '${_baseUrl}recommendations/unpaid';
   static const recommendationsPaid = '${_baseUrl}recommendations/paid/';
   static const pay = '${_baseUrl}payments/pay';
+  static const apple = '${_baseUrl}payments/apple';
 }

@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moment_dart/moment_dart.dart';
 
+import '../../../shared_preferences/shared_preferences.dart';
+
 class BlogScreen extends StatefulWidget {
   const BlogScreen({super.key});
 
@@ -36,15 +38,25 @@ class _BlogScreenState extends State<BlogScreen> {
                   padding: EdgeInsets.only(bottom: 10.h, left: 8.w, right: 8.w),
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SingleBlog(
-                                name: snapshot.data![index].title!,
-                                date: snapshot.data![index].createdAt!,
-                                image: snapshot.data![index].image!,
-                                desc: snapshot.data![index].content!),
-                          ));
+                      if (AppSettingsPreferences.getString(
+                          key: PrefKeys.token.name) ==
+                          null ||
+                          AppSettingsPreferences.getString(
+                              key: PrefKeys.token.name) ==
+                              '') {
+                        Navigator.pushReplacementNamed(
+                            context, '/start_screen');
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SingleBlog(
+                                  name: snapshot.data![index].title!,
+                                  date: snapshot.data![index].createdAt!,
+                                  image: snapshot.data![index].image!,
+                                  desc: snapshot.data![index].content!),
+                            ));
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(

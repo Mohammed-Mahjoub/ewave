@@ -7,10 +7,7 @@ import '../api_setting.dart';
 class VideosController {
   Future<List<Videos>> getAllVideos() async {
     var url = Uri.parse(ApiSettings.videos);
-    var response = await http.get(url, headers: {
-      "Authorization":
-          'Bearer ${AppSettingsPreferences.getString(key: PrefKeys.token.name)!}',
-    });
+    var response = await http.get(url);
     if (response.statusCode == 200) {
       print(response.body);
       var jsonResponse = jsonDecode(response.body);

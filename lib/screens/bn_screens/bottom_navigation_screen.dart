@@ -39,7 +39,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             Text(
               screens[_selectedPageIndex].title,
               style: GoogleFonts.poppins(
-                fontSize: 14.sp,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
@@ -166,7 +166,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppSettingsPreferences().user().email!.substring(0,10)+'...',
+                            AppSettingsPreferences().user().email != null ? AppSettingsPreferences().user().email!.substring(0,10)+'...' : '',
                             style: GoogleFonts.poppins(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
@@ -174,7 +174,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                             ),
                           ),
                           Text(
-                            AppSettingsPreferences().user().role!,
+                            AppSettingsPreferences().user().role ?? '',
                             style: GoogleFonts.poppins(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
@@ -225,7 +225,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                         color: Colors.white,
                       ),
                       SizedBox(width: 10.w),
-                      AppSettingsPreferences().user().expire_payment != '' ?
+                      AppSettingsPreferences().user().expire_payment != '' && AppSettingsPreferences().user().expire_payment != null ?
                       Text(
                         'Pay End on: ',
                         style: GoogleFonts.poppins(
@@ -242,7 +242,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                         ),
                       ),
                       Text(
-                          AppSettingsPreferences().user().expire_payment != '' ?
+                        AppSettingsPreferences().user().expire_payment != '' &&AppSettingsPreferences().user().expire_payment != null ?
                         Moment(
                           DateTime.parse(AppSettingsPreferences().user().expire_payment!),
                         ).format("MMMM, Do").toString() : '',
@@ -317,6 +317,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           ),
         ),
       ),
+
     );
   }
 }

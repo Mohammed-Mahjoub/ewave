@@ -20,4 +20,18 @@ class PayController {
     }
     return null;
   }
+  Future<String?>? apple() async {
+    var url = Uri.parse(ApiSettings.apple);
+    var response = await http.post(url, headers: {
+      "Authorization":
+          'Bearer ${AppSettingsPreferences.getString(key: PrefKeys.token.name)!}',
+    });
+    print(response.statusCode);
+    print(response.body);
+    if (response.statusCode == 200) {
+      print('.........................................');
+      return response.body;
+    }
+    return null;
+  }
 }

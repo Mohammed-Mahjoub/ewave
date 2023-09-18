@@ -15,11 +15,7 @@ class _LaunchScreenState extends State<LaunchScreen>  with FbNotifications{
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       print(AppSettingsPreferences.getString(key: PrefKeys.token.name));
-      if(AppSettingsPreferences.getString(key: PrefKeys.token.name) == null || AppSettingsPreferences.getString(key: PrefKeys.token.name) == ''){
-        Navigator.pushReplacementNamed(context, '/start_screen');
-      }else{
-        Navigator.pushReplacementNamed(context, '/bn_screen');
-      }
+      Navigator.pushReplacementNamed(context, '/bn_screen');
     });
     requestNotificationPermissions();
     initializeForegroundNotificationForAndroid(context);

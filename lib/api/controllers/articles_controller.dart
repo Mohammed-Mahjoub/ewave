@@ -7,10 +7,7 @@ import '../api_setting.dart';
 class ArticlesController {
   Future<List<Articles>> getAllArticles() async {
     var url = Uri.parse(ApiSettings.articles);
-    var response = await http.get(url, headers: {
-      "Authorization":
-          'Bearer ${AppSettingsPreferences.getString(key: PrefKeys.token.name)!}',
-    });
+    var response = await http.get(url);
     if (response.statusCode == 200) {
       print(response.body);
       var jsonResponse = jsonDecode(response.body);
@@ -20,3 +17,4 @@ class ArticlesController {
     return [];
   }
 }
+

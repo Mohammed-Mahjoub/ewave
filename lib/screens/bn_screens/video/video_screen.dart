@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../shared_preferences/shared_preferences.dart';
+
 class VideoScreen extends StatefulWidget {
   const VideoScreen({super.key});
 
@@ -59,15 +61,25 @@ class _VideoScreenState extends State<VideoScreen> {
                           const Divider(color: Colors.black),
                           InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DisplayVideoScreen(
-                                        post: Post(
-                                      snapshot.data![index].title!,
-                                      snapshot.data![index].url!,
-                                    )),
-                                  ));
+                              if (AppSettingsPreferences.getString(
+                                  key: PrefKeys.token.name) ==
+                                  null ||
+                                  AppSettingsPreferences.getString(
+                                      key: PrefKeys.token.name) ==
+                                      '') {
+                                Navigator.pushReplacementNamed(
+                                    context, '/start_screen');
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DisplayVideoScreen(
+                                          post: Post(
+                                            snapshot.data![index].title!,
+                                            snapshot.data![index].url!,
+                                          )),
+                                    ));
+                              }
                             },
                             child: Container(
                               color: Colors.grey,
@@ -75,7 +87,8 @@ class _VideoScreenState extends State<VideoScreen> {
                               child: Stack(
                                 children: [
                                   Image.network(
-                                    snapshot.data![index].image?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrTFrhr_-pYR74jUgOy7IerAoHAX3zPIZZcg&usqp=CAU',
+                                    snapshot.data![index].image ??
+                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrTFrhr_-pYR74jUgOy7IerAoHAX3zPIZZcg&usqp=CAU',
                                     height: 200.h,
                                     width: double.infinity,
                                     fit: BoxFit.cover,

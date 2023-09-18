@@ -13,12 +13,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:purchases_flutter/models/purchases_configuration.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'fb/fb_notifications.dart';
 import 'firebase_options.dart';
 import 'models/Noti.dart';
 
+
+final _configration = PurchasesConfiguration('appl_PPJNQKdiNuamcZQOnzAsnHckdhC');
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Purchases.configure(_configration);
   await AppSettingsPreferences.init();
   Noti.initialize(
     FlutterLocalNotificationsPlugin(),
