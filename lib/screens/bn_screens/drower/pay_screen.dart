@@ -56,7 +56,7 @@ class _PayScreenState extends State<PayScreen> {
           // ),
           Icon(Icons.monetization_on_outlined,size: 100,color: Colors.white,),
           Text(
-            'Enter Pay To Pay 120\$ For The Paid Subscription',
+            'Enter Pay To Pay 120\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
@@ -85,7 +85,7 @@ class _PayScreenState extends State<PayScreen> {
                       val = !val;
                     });
                   },
-                  side: BorderSide(color: Colors.white),
+                  side: const BorderSide(color: Colors.white),
                 ),
                 Text(
                   'Accept privacy policy',
@@ -95,21 +95,20 @@ class _PayScreenState extends State<PayScreen> {
                     color: Colors.white,
                   ),
                 ),
-                // const Spacer(),
-                // TextButton(
-                //   onPressed: () {
-                //     _showBottomSheet(context);
-                //   },
-                //   child: Text(
-                //     AppLocalizations.of(context)!.forget_password,
-                //     style: GoogleFonts.poppins(
-                //       fontSize: 15.sp,
-                //       fontWeight: FontWeight.w500,
-                //       color: Colors.red,
-                //     ),
-                //   ),
-                // ),
               ],
+            ),
+          ),
+          Align(
+            alignment: AlignmentDirectional.topStart,
+            child: TextButton(onPressed: (){
+              Navigator.pushNamed(context, '/privacy_policy_screen');
+            }, child: Text(
+              'Read privacy policy',
+              style: GoogleFonts.poppins(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             ),
           ),
           SizedBox(height: 10.h),

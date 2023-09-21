@@ -212,104 +212,131 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/pay_screen');
-                  },
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.credit_card_outlined,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 10.w),
-                      AppSettingsPreferences().user().expire_payment != '' && AppSettingsPreferences().user().expire_payment != null ?
-                      Text(
-                        'Pay End on: ',
-                        style: GoogleFonts.poppins(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w500,
+              Visibility(
+                visible: (AppSettingsPreferences.getString(
+                    key: PrefKeys.token.name) ==
+                    null ||
+                    AppSettingsPreferences.getString(
+                        key: PrefKeys.token.name) ==
+                        ''),
+                child: SizedBox(height: 0.h),
+                replacement: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/pay_screen');
+                    },
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.credit_card_outlined,
                           color: Colors.white,
                         ),
-                      ):Text(
-                        'Pay',
-                        style: GoogleFonts.poppins(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                        SizedBox(width: 10.w),
+                        AppSettingsPreferences().user().expire_payment != '' && AppSettingsPreferences().user().expire_payment != null ?
+                        Text(
+                          'Pay End on: ',
+                          style: GoogleFonts.poppins(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ):Text(
+                          'Pay',
+                          style: GoogleFonts.poppins(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        AppSettingsPreferences().user().expire_payment != '' &&AppSettingsPreferences().user().expire_payment != null ?
-                        Moment(
-                          DateTime.parse(AppSettingsPreferences().user().expire_payment!),
-                        ).format("MMMM, Do").toString() : '',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                        Text(
+                          AppSettingsPreferences().user().expire_payment != '' &&AppSettingsPreferences().user().expire_payment != null ?
+                          Moment(
+                            DateTime.parse(AppSettingsPreferences().user().expire_payment!),
+                          ).format("MMMM, Do").toString() : '',
+                          style: GoogleFonts.poppins(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: InkWell(
-                  onTap: () async {
-                    print(AppSettingsPreferences.getString(key: '_id'));
-                    await AuthController().delete(id: AppSettingsPreferences.getString(key: '_id')!);
-                    Navigator.pushReplacementNamed(context, '/login_screen');
-                    AppSettingsPreferences.putString(
-                        key: PrefKeys.token.name, value: '');
-                  },
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.delete_outline,
-                        color: Colors.red,
-                      ),
-                      SizedBox(width: 10.w),
-                      Text(
-                        'Delete My Account',
-                        style: GoogleFonts.poppins(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+              Visibility(
+                visible: (AppSettingsPreferences.getString(
+                    key: PrefKeys.token.name) ==
+                    null ||
+                    AppSettingsPreferences.getString(
+                        key: PrefKeys.token.name) ==
+                        ''),
+                child: SizedBox(height: 0.h),
+                replacement: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: InkWell(
+                    onTap: () async {
+                      print(AppSettingsPreferences.getString(key: '_id'));
+                      await AuthController().delete(id: AppSettingsPreferences.getString(key: '_id')!);
+                      Navigator.pushReplacementNamed(context, '/login_screen');
+                      AppSettingsPreferences.putString(
+                          key: PrefKeys.token.name, value: '');
+                    },
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.delete_outline,
+                          color: Colors.red,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 10.w),
+                        Text(
+                          'Delete My Account',
+                          style: GoogleFonts.poppins(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: InkWell(
-                  onTap: () async {
-                    AppSettingsPreferences.putString(
-                        key: PrefKeys.token.name, value: '');
-                    Navigator.pushReplacementNamed(context, '/login_screen');
-                  },
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.logout,
-                        color: Colors.red,
-                      ),
-                      SizedBox(width: 10.w),
-                      Text(
-                        'Logout',
-                        style: GoogleFonts.poppins(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+              Visibility(
+                visible: (AppSettingsPreferences.getString(
+                    key: PrefKeys.token.name) ==
+                    null ||
+                    AppSettingsPreferences.getString(
+                        key: PrefKeys.token.name) ==
+                        ''),
+                child: SizedBox(height: 0.h),
+                replacement: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: InkWell(
+                    onTap: () async {
+                      AppSettingsPreferences.putString(
+                          key: PrefKeys.token.name, value: '');
+                      Navigator.pushReplacementNamed(context, '/login_screen');
+                    },
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.logout,
+                          color: Colors.red,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 10.w),
+                        Text(
+                          'Logout',
+                          style: GoogleFonts.poppins(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
