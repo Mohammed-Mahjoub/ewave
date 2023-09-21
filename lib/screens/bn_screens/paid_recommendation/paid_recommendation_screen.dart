@@ -219,7 +219,7 @@ class _PaidRecommendationScreenState extends State<PaidRecommendationScreen>
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Text(
-                      'Enter Pay To Pay 120\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
+                      'Enter Pay To Pay 120.99\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
                       style: GoogleFonts.poppins(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,

@@ -56,7 +56,7 @@ class _PayScreenState extends State<PayScreen> {
           // ),
           Icon(Icons.monetization_on_outlined,size: 100,color: Colors.white,),
           Text(
-            'Enter Pay To Pay 120\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
+            'Enter Pay To Pay 120.99\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
