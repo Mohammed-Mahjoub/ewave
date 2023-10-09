@@ -3,7 +3,7 @@ import 'package:ewave/util/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
+// import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../shared_preferences/shared_preferences.dart';
 import '../../../widgets/app_button.dart';
@@ -56,7 +56,7 @@ class _PayScreenState extends State<PayScreen> {
           // ),
           Icon(Icons.monetization_on_outlined,size: 100,color: Colors.white,),
           Text(
-            'Enter Pay To Pay 120.99\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
+            'Enter Pay To Pay 169.99\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
             style: GoogleFonts.poppins(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
@@ -117,34 +117,34 @@ class _PayScreenState extends State<PayScreen> {
             fontSize: 18.sp,
             onPress: () async {
               if (val == true) {
-              //   String? response = await PayController().pay();
-              //   if (response != null) {
-              //     Navigator.pop(context);
-              //     await launchUrl(
-              //       Uri.parse(response),
-              //       mode: LaunchMode.externalApplication,
-              //     );
-              //     Navigator.pushNamedAndRemoveUntil(
-              //         context, '/login_screen', (route) => true);
-              //   } else {
-              //     context.showSnackBar(
-              //         message: 'Something went wrong', error: true);
-              //   }
-              // } else {
-              //   context.showSnackBar(
-              //       message: 'Enter on check box', error: true);
-                try{
-                  await Purchases.purchaseProduct('ewave_120');
-                  String? x = await PayController().apple();
-                  AppSettingsPreferences.putString(
-                      key: PrefKeys.token.name, value: '');
+                String? response = await PayController().pay();
+                if (response != null) {
                   Navigator.pop(context);
-                  Navigator.pop(context);
-                  Navigator.pushReplacementNamed(context, '/login_screen');
-                  print('done');
-                }catch(e){
-                  print('error');
+                  await launchUrl(
+                    Uri.parse(response),
+                    mode: LaunchMode.externalApplication,
+                  );
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/login_screen', (route) => true);
+                } else {
+                  context.showSnackBar(
+                      message: 'Something went wrong', error: true);
                 }
+              } else {
+                context.showSnackBar(
+                    message: 'Enter on check box', error: true);
+                // try{
+                //   await Purchases.purchaseProduct('ewave_120');
+                //   String? x = await PayController().apple();
+                //   AppSettingsPreferences.putString(
+                //       key: PrefKeys.token.name, value: '');
+                //   Navigator.pop(context);
+                //   Navigator.pop(context);
+                //   Navigator.pushReplacementNamed(context, '/login_screen');
+                //   print('done');
+                // }catch(e){
+                //   print('error');
+                // }
               }
             },
           ),

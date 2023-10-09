@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moment_dart/moment_dart.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
+// import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../api/controllers/pay_controller.dart';
 import '../../../api/controllers/recommedations_controller.dart';
@@ -219,7 +219,7 @@ class _PaidRecommendationScreenState extends State<PaidRecommendationScreen>
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Text(
-                      'Enter Pay To Pay 120.99\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
+                      'Enter Pay To Pay 169.99\$ For The Paid Subscription To Get The Paid Recommendation And Paid Videos For One Month The Subscription Renewed Manually',
                       style: GoogleFonts.poppins(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
@@ -280,33 +280,33 @@ class _PaidRecommendationScreenState extends State<PaidRecommendationScreen>
                       onPress: () async {
 
                         if (val == true) {
-                          //   String? response = await PayController().pay();
-                          //   if (response != null) {
-                          //     Navigator.pop(context);
-                          //     await launchUrl(
-                          //       Uri.parse(response),
-                          //       mode: LaunchMode.externalApplication,
-                          //     );
-                          //     Navigator.pushNamedAndRemoveUntil(
-                          //         context, '/login_screen', (route) => true);
-                          //   } else {
-                          //     context.showSnackBar(
-                          //         message: 'Something went wrong', error: true);
-                          //   }
-                          // } else {
-                          //   context.showSnackBar(
-                          //       message: 'Enter on check box', error: true);
-                          try{
-                            await Purchases.purchaseProduct('ewave_120');
-                            String? x = await PayController().apple();
-                            AppSettingsPreferences.putString(
-                                key: PrefKeys.token.name, value: '');
-                            Navigator.pushNamedAndRemoveUntil(context, '/login_screen', (route) => true);
-
-                            print('done');
-                          }catch(e){
-                            print('error');
-                          }
+                            String? response = await PayController().pay();
+                            if (response != null) {
+                              Navigator.pop(context);
+                              await launchUrl(
+                                Uri.parse(response),
+                                mode: LaunchMode.externalApplication,
+                              );
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/login_screen', (route) => true);
+                            } else {
+                              context.showSnackBar(
+                                  message: 'Something went wrong', error: true);
+                            }
+                          } else {
+                            context.showSnackBar(
+                                message: 'Enter on check box', error: true);
+                          // try{
+                          //   await Purchases.purchaseProduct('ewave_120');
+                          //   String? x = await PayController().apple();
+                          //   AppSettingsPreferences.putString(
+                          //       key: PrefKeys.token.name, value: '');
+                          //   Navigator.pushNamedAndRemoveUntil(context, '/login_screen', (route) => true);
+                          //
+                          //   print('done');
+                          // }catch(e){
+                          //   print('error');
+                          // }
                         }
 
                       },
